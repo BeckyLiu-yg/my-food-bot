@@ -15,7 +15,7 @@
                 extend: {
                     fontFamily: {
                         sans: ['"Quicksand"', '"Noto Sans SC"', 'sans-serif'],
-                        serif: ['"Ma Shan Zheng"', 'cursive'], // 引入毛笔字体风格
+                        serif: ['"Ma Shan Zheng"', 'cursive'], 
                     },
                     colors: {
                         'bubble-user': '#fff1f2', 
@@ -36,11 +36,11 @@
                         },
                         float: {
                             '0%, 100%': { transform: 'translateY(0) rotate(-2deg)' },
-                            '50%': { transform: 'translateY(-10px) rotate(2deg)' },
+                            '50%': { transform: 'translateY(-6px) rotate(2deg)' }, // 减小浮动幅度
                         },
                         glow: {
-                            '0%': { boxShadow: '0 0 10px rgba(251, 146, 60, 0.3)' },
-                            '100%': { boxShadow: '0 0 25px rgba(251, 146, 60, 0.8)' },
+                            '0%': { boxShadow: '0 0 5px rgba(251, 146, 60, 0.3)' }, // 减小光晕
+                            '100%': { boxShadow: '0 0 15px rgba(251, 146, 60, 0.8)' },
                         }
                     }
                 }
@@ -68,25 +68,15 @@
         .prose ul { list-style-type: disc; padding-left: 1.2rem; margin-bottom: 0.5rem; }
         .prose strong { color: #881337; font-weight: 700; }
 
-        /* 霄灯样式 */
         .sky-lantern {
             background: linear-gradient(180deg, #ffedd5 0%, #fb923c 40%, #ef4444 100%);
             position: relative;
         }
-        /* 霄灯内部骨架线 */
         .sky-lantern::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 50%;
-            width: 1px; height: 100%;
-            background: rgba(255,255,255,0.3);
+            content: ''; position: absolute; top: 0; left: 50%; width: 1px; height: 100%; background: rgba(255,255,255,0.3);
         }
         .sky-lantern::after {
-            content: '';
-            position: absolute;
-            top: 50%; left: 0;
-            width: 100%; height: 1px;
-            background: rgba(255,255,255,0.2);
+            content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: rgba(255,255,255,0.2);
         }
     </style>
 </head>
@@ -100,59 +90,60 @@
                  class="w-[90%] max-w-[500px] object-contain">
         </div>
 
-        <div class="absolute top-0 left-0 w-full z-30 pointer-events-none flex justify-center gap-4 sm:gap-8 pt-2">
+        <div class="absolute top-0 left-0 w-full z-30 pointer-events-none flex justify-center gap-3 sm:gap-6 pt-2">
             
             <div class="flex flex-col items-center animate-float-slow">
-                <div class="h-8 w-[1px] bg-red-300"></div> <div class="sky-lantern w-12 h-16 sm:w-14 sm:h-20 rounded-lg flex items-center justify-center text-2xl sm:text-3xl font-serif text-yellow-100 shadow-lg animate-glow border border-orange-300/50">
+                <div class="h-6 w-[1px] bg-red-300"></div> <div class="sky-lantern w-9 h-12 sm:w-10 sm:h-14 rounded-[4px] flex items-center justify-center text-lg sm:text-xl font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">
                     春
                 </div>
-                <div class="h-4 w-1 bg-red-500 mt-[-2px]"></div> <div class="h-6 w-[2px] bg-red-400/60"></div> </div>
+                <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div> <div class="h-4 w-[1px] bg-red-400/60"></div>
+            </div>
 
-            <div class="flex flex-col items-center animate-float-medium" style="animation-delay: 1s;">
-                <div class="h-12 w-[1px] bg-red-300"></div>
-                <div class="sky-lantern w-12 h-16 sm:w-14 sm:h-20 rounded-lg flex items-center justify-center text-2xl sm:text-3xl font-serif text-yellow-100 shadow-lg animate-glow border border-orange-300/50">
+            <div class="flex flex-col items-center animate-float-medium" style="animation-delay: 0.8s;">
+                <div class="h-10 w-[1px] bg-red-300"></div>
+                <div class="sky-lantern w-9 h-12 sm:w-10 sm:h-14 rounded-[4px] flex items-center justify-center text-lg sm:text-xl font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">
                     节
                 </div>
-                <div class="h-4 w-1 bg-red-500 mt-[-2px]"></div>
-                <div class="h-6 w-[2px] bg-red-400/60"></div>
+                <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div>
+                <div class="h-4 w-[1px] bg-red-400/60"></div>
             </div>
 
-            <div class="flex flex-col items-center animate-float-fast" style="animation-delay: 0.5s;">
-                <div class="h-10 w-[1px] bg-red-300"></div>
-                <div class="sky-lantern w-12 h-16 sm:w-14 sm:h-20 rounded-lg flex items-center justify-center text-2xl sm:text-3xl font-serif text-yellow-100 shadow-lg animate-glow border border-orange-300/50">
+            <div class="flex flex-col items-center animate-float-fast" style="animation-delay: 0.4s;">
+                <div class="h-8 w-[1px] bg-red-300"></div>
+                <div class="sky-lantern w-9 h-12 sm:w-10 sm:h-14 rounded-[4px] flex items-center justify-center text-lg sm:text-xl font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">
                     快
                 </div>
-                <div class="h-4 w-1 bg-red-500 mt-[-2px]"></div>
-                <div class="h-6 w-[2px] bg-red-400/60"></div>
+                <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div>
+                <div class="h-4 w-[1px] bg-red-400/60"></div>
             </div>
 
-            <div class="flex flex-col items-center animate-float-slow" style="animation-delay: 1.5s;">
-                <div class="h-6 w-[1px] bg-red-300"></div>
-                <div class="sky-lantern w-12 h-16 sm:w-14 sm:h-20 rounded-lg flex items-center justify-center text-2xl sm:text-3xl font-serif text-yellow-100 shadow-lg animate-glow border border-orange-300/50">
+            <div class="flex flex-col items-center animate-float-slow" style="animation-delay: 1.2s;">
+                <div class="h-4 w-[1px] bg-red-300"></div>
+                <div class="sky-lantern w-9 h-12 sm:w-10 sm:h-14 rounded-[4px] flex items-center justify-center text-lg sm:text-xl font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">
                     乐
                 </div>
-                <div class="h-4 w-1 bg-red-500 mt-[-2px]"></div>
-                <div class="h-6 w-[2px] bg-red-400/60"></div>
+                <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div>
+                <div class="h-4 w-[1px] bg-red-400/60"></div>
             </div>
 
         </div>
 
-        <header class="px-6 py-5 bg-white/70 backdrop-blur-md border-b border-white/50 z-20 flex items-center justify-between absolute top-0 w-full">
+        <header class="px-6 py-4 bg-white/70 backdrop-blur-md border-b border-white/50 z-20 flex items-center justify-between absolute top-0 w-full mt-1">
             <div class="flex items-center gap-4 pl-2"> 
                 <div class="relative">
-                    <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-red-500 to-orange-400 flex items-center justify-center text-2xl text-white shadow-lg shadow-red-200">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-red-500 to-orange-400 flex items-center justify-center text-xl text-white shadow-lg shadow-red-200">
                         🥑
                     </div>
-                    <div class="absolute -bottom-1 -right-1 bg-yellow-400 text-red-600 text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white shadow-sm">
+                    <div class="absolute -bottom-1 -right-1 bg-yellow-400 text-red-600 text-[9px] font-bold w-4 h-4 flex items-center justify-center rounded-full border-2 border-white shadow-sm">
                         福
                     </div>
                 </div>
                 
                 <div>
-                    <h1 class="font-bold text-lg text-slate-700 tracking-wide flex items-center gap-1 drop-shadow-sm bg-white/30 backdrop-blur-sm rounded px-1">
+                    <h1 class="font-bold text-base text-slate-700 tracking-wide flex items-center gap-1 drop-shadow-sm bg-white/30 backdrop-blur-sm rounded px-1">
                         云朵餐厅
                     </h1>
-                    <p class="text-[10px] text-slate-400 uppercase tracking-wider pl-1">AI Nutritionist</p>
+                    <p class="text-[9px] text-slate-400 uppercase tracking-wider pl-1">AI Nutritionist</p>
                 </div>
             </div>
             
