@@ -38,20 +38,21 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* 链接样式 - 模拟超链接 */
+        /* 链接样式 - 鼠标放上去会变色 */
         .chat-link {
             color: #3B82F6;
             text-decoration: underline;
+            text-decoration-color: #93C5FD;
             cursor: pointer;
             font-weight: 500;
+            transition: all 0.2s;
         }
         .chat-link:hover {
             color: #2563EB;
             background-color: #EFF6FF;
-            border-radius: 4px;
+            text-decoration-color: #2563EB;
         }
         
-        /* Markdown 样式 */
         .prose p { margin-bottom: 0.5rem; line-height: 1.6; }
         .prose ul { list-style-type: disc; padding-left: 1.2rem; margin-bottom: 0.5rem; }
         .prose strong { color: #334155; font-weight: 700; }
@@ -89,12 +90,32 @@
                      class="w-9 h-9 rounded-full flex-shrink-0 border border-white shadow-md object-cover bg-white"
                      alt="AI">
                 
-                <div class="bg-white/90 border border-white/50 text-slate-600 rounded-tl-none shadow-sm backdrop-blur-sm p-4 rounded-2xl max-w-[85%] text-sm prose">
-                    嗨！我是你的智能膳食顾问。🥑<br><br>
-                    你可以点击下方按钮，或者直接点这里：<br><br>
-                    🤷‍♀️ <span class="chat-link" onclick="window.sendQuickMsg('不知道吃啥，随便推荐点')">不知道吃啥，随便推荐点</span><br><br>
-                    💪 <span class="chat-link" onclick="window.sendQuickMsg('最近在健身，求增肌全餐')">最近在健身，求增肌全餐</span><br><br>
-                    ✨ <span class="chat-link" onclick="window.sendQuickMsg('我是特殊人群（孕妇、老人等），三餐怎么吃？')">我是特殊人群（孕妇、老人等），三餐怎么吃？</span>
+                <div class="bg-white/90 border border-white/50 text-slate-600 rounded-tl-none shadow-sm backdrop-blur-sm p-4 rounded-2xl max-w-[85%] text-sm leading-relaxed">
+                    <p class="mb-2">嗨！我是你的智能膳食顾问。🥑</p>
+                    <p class="mb-3">你可以点击下方按钮，或者直接点这里：</p>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-2">
+                            <span>💪</span>
+                            <span class="chat-link" onclick="window.sendQuickMsg('最近在健身，求增肌全餐')">
+                                最近在健身，求增肌全餐
+                            </span>
+                        </div>
+
+                        <div class="flex items-start gap-2">
+                            <span>🤷‍♀️</span>
+                            <span class="chat-link" onclick="window.sendQuickMsg('不知道吃啥，随便推荐点')">
+                                不知道吃啥，随便推荐点
+                            </span>
+                        </div>
+
+                        <div class="flex items-start gap-2">
+                            <span>✨</span>
+                            <span class="chat-link" onclick="window.sendQuickMsg('我是特殊人群（孕妇、老人等），三餐怎么吃？')">
+                                我是特殊人群（孕妇、老人等），三餐怎么吃？
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -105,11 +126,145 @@
                 🥗 三餐推荐
             </button>
             <button onclick="window.sendQuickMsg('单餐推荐（早餐/午餐/晚餐）')" class="whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-blue-50 border border-indigo-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-indigo-600 cursor-pointer">
-                🍱 单餐推荐
+                🍱 单餐推荐（午餐）
             </button>
             <button onclick="window.sendQuickMsg('特殊人群饮食推荐')" class="whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-blue-50 border border-orange-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-orange-600 cursor-pointer">
                 ✨ 特殊人群饮食推荐
             </button>
         </div>
 
-        <div class="p-4 bg-white/70 backdrop-blur-md border-t border-
+        <div class="p-4 bg-white/70 backdrop-blur-md border-t border-white/50 relative z-10">
+            <div class="relative flex items-center bg-white rounded-full border border-slate-200 focus-within:border-blue-300 focus-within:ring-4 focus-within:ring-blue-50 transition-all shadow-sm">
+                <input type="text" id="user-input" 
+                    class="w-full bg-transparent px-6 py-4 outline-none text-slate-700 placeholder-slate-400"
+                    placeholder="今天想给谁做饭？..." 
+                    autocomplete="off">
+                <button id="send-btn" class="absolute right-2 p-2.5 bg-gradient-to-r from-blue-400 to-cyan-400 hover:from-blue-500 hover:to-cyan-500 text-white rounded-full transition-all transform hover:scale-105 shadow-md shadow-blue-200 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                    </svg>
+                </button>
+            </div>
+            <p class="text-center text-[10px] text-slate-400 mt-3 font-medium tracking-wide">
+                Powered with 💗 by Becky & AI
+            </p>
+        </div>
+
+    </main>
+
+    <script>
+        // ================= 配置区域 =================
+        const API_KEY = 'app-Usm9V9geo1e5FbXkcRmMIDlr'; 
+        const BASE_URL = 'https://api.dify.ai/v1';
+        // ===========================================
+
+        const chatContainer = document.getElementById('chat-container');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+        
+        const userId = 'user_' + Math.random().toString(36).substr(2, 9);
+        let conversationId = null;
+
+        // 全局发送函数 (确保 HTML onclick 能调用到)
+        window.sendQuickMsg = function(text) {
+            console.log("点击了:", text);
+            if(userInput) {
+                userInput.value = text;
+                sendMessage();
+            }
+        }
+
+        async function sendMessage() {
+            const query = userInput.value.trim();
+            if (!query) return;
+
+            appendMessage('user', query);
+            userInput.value = '';
+            
+            const loadingId = appendMessage('ai', 'Thinking...', true);
+
+            try {
+                const response = await fetch(`${BASE_URL}/chat-messages`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${API_KEY}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        inputs: {},
+                        query: query,
+                        response_mode: "blocking",
+                        conversation_id: conversationId,
+                        user: userId
+                    })
+                });
+
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.message);
+
+                conversationId = data.conversation_id;
+                removeMessage(loadingId);
+                appendMessage('ai', data.answer);
+
+            } catch (error) {
+                removeMessage(loadingId);
+                appendMessage('ai', `⚠️ 网络开小差了: ${error.message}`);
+            }
+        }
+
+        function appendMessage(role, text, isLoading = false) {
+            const div = document.createElement('div');
+            div.className = 'flex gap-4 animate-fade-in';
+            div.id = isLoading ? 'loading-msg' : `msg-${Date.now()}`;
+            
+            // 头像
+            const avatar = role === 'user' 
+                ? '<div class="w-9 h-9 rounded-full bg-indigo-100 border border-indigo-50 flex-shrink-0 flex items-center justify-center text-sm shadow-sm">👤</div>'
+                : `<img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" 
+                        class="w-9 h-9 rounded-full flex-shrink-0 border border-white shadow-md object-cover bg-white"
+                        alt="AI">`;
+
+            const bubbleStyle = role === 'user'
+                ? 'bg-bubble-user text-slate-700 ml-auto rounded-tr-none shadow-sm'
+                : 'bg-white/90 border border-white/50 text-slate-600 rounded-tl-none shadow-sm backdrop-blur-sm'; 
+
+            if (role === 'user') div.classList.add('flex-row-reverse');
+
+            let contentHtml = text;
+            if (role === 'ai' && !isLoading) {
+                // 如果没有包含 HTML 标签，才去解析 Markdown，防止破坏我们手写的 HTML 链接
+                if (!text.includes('<')) {
+                    contentHtml = marked.parse(text);
+                }
+            }
+
+            const loadingClass = isLoading ? 'animate-pulse text-slate-400' : '';
+
+            div.innerHTML = `
+                ${avatar}
+                <div class="${bubbleStyle} p-4 rounded-2xl max-w-[85%] text-sm prose ${loadingClass}">
+                    ${contentHtml}
+                </div>
+            `;
+
+            chatContainer.appendChild(div);
+            scrollToBottom();
+            return div.id;
+        }
+
+        function removeMessage(id) {
+            const el = document.getElementById(id);
+            if (el) el.remove();
+        }
+
+        function scrollToBottom() {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
+</body>
+</html>
