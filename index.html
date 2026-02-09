@@ -28,7 +28,7 @@
                         'float-medium': 'float 5s ease-in-out infinite',
                         'float-fast': 'float 4s ease-in-out infinite',
                         'glow': 'glow 3s ease-in-out infinite alternate',
-                        'snow': 'snow 10s linear infinite',
+                        'snow-fall': 'snowFall linear infinite', // 独立的下雪动画
                     },
                     keyframes: {
                         fadeIn: {
@@ -43,10 +43,10 @@
                             '0%': { boxShadow: '0 0 5px rgba(251, 146, 60, 0.3)' }, 
                             '100%': { boxShadow: '0 0 15px rgba(251, 146, 60, 0.8)' },
                         },
-                        snow: {
-                            '0%': { transform: 'translateY(-10px) translateX(0)', opacity: '0' },
-                            '20%': { opacity: '0.8' },
-                            '100%': { transform: 'translateY(100vh) translateX(20px)', opacity: '0' },
+                        snowFall: {
+                            '0%': { transform: 'translateY(-10vh)', opacity: '0' },
+                            '20%': { opacity: '1' },
+                            '100%': { transform: 'translateY(100vh)', opacity: '0.2' },
                         }
                     }
                 }
@@ -86,30 +86,39 @@
             content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: rgba(255,255,255,0.2);
         }
 
-        /* ❄️ 修复版瑞雪 - 全局固定 */
-        .snowflake {
+        /* ❄️ 瑞雪系统 - 修复可见性 */
+        .snow-container {
             position: fixed;
-            top: -10px;
-            color: #fff;
-            background: #fff;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* 穿透点击，不影响操作 */
+            z-index: 50; /* 保证在最上层 */
+            overflow: hidden;
+        }
+        .snowflake {
+            position: absolute;
+            background-color: white;
             border-radius: 50%;
-            pointer-events: none; /* 穿透点击 */
-            z-index: 9999; /* 确保在最上层 */
-            box-shadow: 0 0 5px rgba(255,255,255,0.8);
+            opacity: 0.8;
+            /* 关键修复：加一点点阴影，防止在纯白背景下看不见 */
+            box-shadow: 0 0 4px rgba(0,0,0,0.05); 
         }
     </style>
 </head>
 
 <body class="bg-gradient-to-br from-rose-100 via-orange-50 to-red-100 h-screen flex flex-col items-center justify-center p-4 text-slate-600 relative overflow-hidden">
 
-    <div class="snowflake w-1 h-1 opacity-60" style="left: 10%; animation: snow 8s linear infinite; animation-delay: 0s;"></div>
-    <div class="snowflake w-1.5 h-1.5 opacity-80" style="left: 20%; animation: snow 12s linear infinite; animation-delay: 4s;"></div>
-    <div class="snowflake w-2 h-2 opacity-50 blur-[1px]" style="left: 30%; animation: snow 10s linear infinite; animation-delay: 2s;"></div>
-    <div class="snowflake w-1 h-1 opacity-70" style="left: 45%; animation: snow 14s linear infinite; animation-delay: 1s;"></div>
-    <div class="snowflake w-2 h-2 opacity-60 blur-[1px]" style="left: 60%; animation: snow 9s linear infinite; animation-delay: 5s;"></div>
-    <div class="snowflake w-1.5 h-1.5 opacity-80" style="left: 75%; animation: snow 11s linear infinite; animation-delay: 3s;"></div>
-    <div class="snowflake w-1 h-1 opacity-50" style="left: 90%; animation: snow 13s linear infinite; animation-delay: 0.5s;"></div>
-    <div class="snowflake w-2 h-2 opacity-40 blur-[2px]" style="left: 5%; animation: snow 15s linear infinite; animation-delay: 7s;"></div>
+    <div class="snow-container">
+        <div class="snowflake w-2 h-2" style="left: 10%; animation: snow-fall 8s linear infinite; animation-delay: 0s;"></div>
+        <div class="snowflake w-1.5 h-1.5 blur-[1px]" style="left: 20%; animation: snow-fall 12s linear infinite; animation-delay: 4s;"></div>
+        <div class="snowflake w-3 h-3 blur-[2px] opacity-60" style="left: 35%; animation: snow-fall 10s linear infinite; animation-delay: 2s;"></div>
+        <div class="snowflake w-1 h-1" style="left: 50%; animation: snow-fall 15s linear infinite; animation-delay: 1s;"></div>
+        <div class="snowflake w-2 h-2" style="left: 65%; animation: snow-fall 9s linear infinite; animation-delay: 6s;"></div>
+        <div class="snowflake w-1.5 h-1.5 blur-[1px]" style="left: 80%; animation: snow-fall 11s linear infinite; animation-delay: 3s;"></div>
+        <div class="snowflake w-2.5 h-2.5 blur-[1px] opacity-50" style="left: 95%; animation: snow-fall 14s linear infinite; animation-delay: 0.5s;"></div>
+    </div>
 
     <main class="w-full max-w-2xl h-[90vh] bg-white/90 backdrop-blur-xl rounded-[2.5rem] shadow-2xl flex flex-col overflow-hidden border border-white/60 relative animate-fade-in z-10">
         
@@ -178,7 +187,7 @@
                 
                 <div class="bg-white/90 border border-white/50 text-slate-600 rounded-tl-none shadow-sm backdrop-blur-sm p-4 rounded-2xl max-w-[85%] text-sm leading-relaxed mt-1">
                     <p class="mb-2">过年好！🧨 我是你的云朵膳食顾问 ☁️</p>
-                    <p class="mb-3">大鱼大肉吃多了？快用这 3 个核心锦囊调理一下：</p>
+                    <p class="mb-3">大鱼大肉吃多了？这里有 3 个解腻锦囊：</p>
                     
                     <div class="space-y-3">
                         <div class="flex items-start gap-2">
@@ -207,30 +216,30 @@
         <div class="px-4 pb-2 relative z-10">
             <div class="grid grid-cols-3 gap-2">
                 
-                <button onclick="window.sendQuickMsg('求推荐刮油解腻的饮品或小菜')" class="py-2.5 bg-red-50 hover:bg-red-100 border border-red-200 rounded-2xl text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex flex-col items-center justify-center gap-1 cursor-pointer">
+                <button onclick="window.sendQuickMsg('求推荐刮油解腻的饮品或小菜')" class="h-9 bg-red-50 hover:bg-red-100 border border-red-200 rounded-xl text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1.5 cursor-pointer">
                     <span>🧨</span>
-                    <span>刮油解腻</span>
+                    <span class="truncate">刮油解腻</span>
                 </button>
-                <button onclick="window.sendQuickMsg('求推荐适合全家吃的春节硬菜做法')" class="py-2.5 bg-red-50 hover:bg-red-100 border border-red-200 rounded-2xl text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex flex-col items-center justify-center gap-1 cursor-pointer">
+                <button onclick="window.sendQuickMsg('求推荐适合全家吃的春节硬菜做法')" class="h-9 bg-red-50 hover:bg-red-100 border border-red-200 rounded-xl text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1.5 cursor-pointer">
                     <span>🥟</span>
-                    <span>压轴硬菜</span>
+                    <span class="truncate">压轴硬菜</span>
                 </button>
-                <button onclick="window.sendQuickMsg('求推荐解酒饮品或消食小菜')" class="py-2.5 bg-red-50 hover:bg-red-100 border border-red-200 rounded-2xl text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex flex-col items-center justify-center gap-1 cursor-pointer">
+                <button onclick="window.sendQuickMsg('求推荐解酒饮品或消食小菜')" class="h-9 bg-red-50 hover:bg-red-100 border border-red-200 rounded-xl text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1.5 cursor-pointer">
                     <span>🍵</span>
-                    <span>解酒消食</span>
+                    <span class="truncate">解酒消食</span>
                 </button>
                 
-                <button onclick="window.sendQuickMsg('帮我规划今天的全天三餐，要营养均衡')" class="py-2.5 bg-white/90 hover:bg-green-50 border border-green-100 rounded-2xl text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-green-600 font-medium flex flex-col items-center justify-center gap-1 cursor-pointer">
+                <button onclick="window.sendQuickMsg('帮我规划今天的全天三餐，要营养均衡')" class="h-9 bg-white/90 hover:bg-green-50 border border-green-100 rounded-xl text-[10px] sm:text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-green-600 font-medium flex items-center justify-center gap-1.5 cursor-pointer">
                     <span>🍱</span>
-                    <span>全天规划</span>
+                    <span class="truncate">全天规划</span>
                 </button>
-                <button onclick="window.sendQuickMsg('推荐一份营养均衡的单人套餐')" class="py-2.5 bg-white/90 hover:bg-orange-50 border border-orange-100 rounded-2xl text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-orange-600 font-medium flex flex-col items-center justify-center gap-1 cursor-pointer">
+                <button onclick="window.sendQuickMsg('推荐一份营养均衡的单人套餐')" class="h-9 bg-white/90 hover:bg-orange-50 border border-orange-100 rounded-xl text-[10px] sm:text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-orange-600 font-medium flex items-center justify-center gap-1.5 cursor-pointer">
                     <span>🥗</span>
-                    <span>单餐推荐</span>
+                    <span class="truncate">单餐推荐</span>
                 </button>
-                <button onclick="window.sendQuickMsg('我是特殊人群（如孕妇、老人），请推荐饮食建议')" class="py-2.5 bg-white/90 hover:bg-yellow-50 border border-yellow-100 rounded-2xl text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-yellow-600 font-medium flex flex-col items-center justify-center gap-1 cursor-pointer">
+                <button onclick="window.sendQuickMsg('我是特殊人群（如孕妇、老人），请推荐饮食建议')" class="h-9 bg-white/90 hover:bg-yellow-50 border border-yellow-100 rounded-xl text-[10px] sm:text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-yellow-600 font-medium flex items-center justify-center gap-1.5 cursor-pointer">
                     <span>🛡️</span>
-                    <span>特殊人群</span>
+                    <span class="truncate">特殊人群</span>
                 </button>
 
             </div>
@@ -256,6 +265,7 @@
     </main>
 
     <script>
+        // ... (JS 代码保持不变) ...
         // ================= 配置区域 =================
         const API_KEY = 'app-Usm9V9geo1e5FbXkcRmMIDlr'; 
         const BASE_URL = 'https://api.dify.ai/v1';
