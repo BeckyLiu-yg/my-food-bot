@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>云朵餐厅 - 新春祈愿版</title>
+    <title>云朵餐厅 - 膳食顾问</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -149,28 +149,28 @@
                      alt="AI">
                 
                 <div class="bg-white/90 border border-white/50 text-slate-600 rounded-tl-none shadow-sm backdrop-blur-sm p-4 rounded-2xl max-w-[85%] text-sm leading-relaxed mt-1">
-                    <p class="mb-2">过年好！🧨 我是你的智能膳食顾问 ☁️</p>
-                    <p class="mb-3">大鱼大肉吃多了？这里有健康锦囊：</p>
+                    <p class="mb-2">过年好呀！🧨 我是你的云朵膳食顾问 ☁️</p>
+                    <p class="mb-3">大鱼大肉吃多了？这里有 3 个锦囊，快戳戳看：</p>
                     
                     <div class="space-y-3">
                         <div class="flex items-start gap-2">
-                            <span>💪</span>
-                            <span class="chat-link" onclick="window.sendQuickMsg('过年吃太油了，求推荐几款刮油解腻的食谱')">
-                                过年吃太油了，求清肠刮油食谱
+                            <span>🍱</span>
+                            <span class="chat-link" onclick="window.sendQuickMsg('帮我规划今天的全天三餐，要营养均衡')">
+                                规划今天的全天三餐
                             </span>
                         </div>
 
                         <div class="flex items-start gap-2">
-                            <span>🥘</span>
-                            <span class="chat-link" onclick="window.sendQuickMsg('家里聚餐，求推荐几道适合春节的健康硬菜')">
-                                家里聚餐，推荐一道健康硬菜
+                            <span>🥗</span>
+                            <span class="chat-link" onclick="window.sendQuickMsg('推荐一份营养均衡的单人套餐（午餐或晚餐）')">
+                                推荐一份单人健康套餐
                             </span>
                         </div>
 
                         <div class="flex items-start gap-2">
-                            <span>✨</span>
-                            <span class="chat-link" onclick="window.sendQuickMsg('我是特殊人群（孕妇、老人），春节怎么吃？')">
-                                我是特殊人群，春节怎么吃？
+                            <span>🛡️</span>
+                            <span class="chat-link" onclick="window.sendQuickMsg('我是特殊人群（如孕妇、老人），请根据我的情况推荐饮食')">
+                                我是特殊人群，怎么吃？
                             </span>
                         </div>
                     </div>
@@ -179,14 +179,16 @@
         </div>
 
         <div class="px-6 pb-2 flex gap-2 overflow-x-auto no-scrollbar relative z-10" id="quick-chips">
-            <button onclick="window.sendQuickMsg('求推荐刮油解腻的饮品或小菜')" class="whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-red-50 border border-red-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-red-500 cursor-pointer">
-                🥬 清肠食谱
+            <button onclick="window.sendQuickMsg('帮我规划今天的全天三餐，要营养均衡')" class="whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-red-50 border border-red-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-red-500 cursor-pointer">
+                🍱 三餐推荐
             </button>
-            <button onclick="window.sendQuickMsg('求推荐适合全家吃的春节硬菜做法')" class="whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-red-50 border border-orange-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-orange-500 cursor-pointer">
-                🥟 健康年夜饭
+            
+            <button onclick="window.sendQuickMsg('推荐一份营养均衡的午餐套餐')" class="whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-red-50 border border-orange-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-orange-500 cursor-pointer">
+                🥗 单餐推荐
             </button>
-            <button onclick="window.sendQuickMsg('求推荐几款解酒饮品或消食小菜')" class="whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-red-50 border border-yellow-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-yellow-600 cursor-pointer">
-                🍵 解酒消食
+            
+            <button onclick="window.sendQuickMsg('我是特殊人群（如孕妇、老人），请推荐饮食建议')" class="whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-red-50 border border-yellow-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-yellow-600 cursor-pointer">
+                🛡️ 特殊人群饮食
             </button>
         </div>
 
@@ -206,6 +208,7 @@
                 Powered with 🧨 by Becky & AI
             </p>
         </div>
+
     </main>
 
     <script>
@@ -272,6 +275,7 @@
             div.className = 'flex gap-4 animate-fade-in';
             div.id = isLoading ? 'loading-msg' : `msg-${Date.now()}`;
             
+            // AI 头像始终使用云朵精灵图片
             const avatar = role === 'user' 
                 ? '<div class="w-12 h-12 rounded-full bg-red-50 border-2 border-white ring-2 ring-red-100 flex-shrink-0 flex items-center justify-center text-xl shadow-md">👤</div>'
                 : `<img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" 
