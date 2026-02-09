@@ -17,20 +17,14 @@
                         sans: ['"Quicksand"', '"Noto Sans SC"', 'sans-serif'],
                     },
                     colors: {
-                        // 气泡颜色微调，更柔和
                         'bubble-user': '#Dbeafe', 
                         'bubble-ai': '#FFFFFF',   
                         'accent': '#60A5FA',      
                     },
                     animation: {
-                        'float': 'float 6s ease-in-out infinite',
                         'fade-in': 'fadeIn 0.5s ease-out forwards',
                     },
                     keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
                         fadeIn: {
                             '0%': { opacity: '0', transform: 'translateY(10px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' },
@@ -43,21 +37,27 @@
     <style>
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .typing-cursor::after { content: '▋'; animation: blink 1s step-start infinite; color: #60A5FA; }
-        @keyframes blink { 50% { opacity: 0; } }
         
         /* Markdown 样式增强 */
         .prose p { margin-bottom: 0.8rem; line-height: 1.6; }
         .prose ul { list-style-type: disc; padding-left: 1.2rem; margin-bottom: 0.8rem; }
         .prose strong { color: #334155; font-weight: 700; }
-        .prose a { color: #60A5FA; text-decoration: underline; }
+        /* 链接样式 */
+        .prose a { color: #3B82F6; text-decoration: underline; cursor: pointer; }
+        .prose a:hover { color: #2563EB; }
     </style>
 </head>
+
 <body class="bg-gradient-to-br from-sky-100 via-indigo-50 to-pink-100 h-screen flex flex-col items-center justify-center p-4 text-slate-600">
 
-    <main class="w-full max-w-2xl h-[90vh] bg-white/80 backdrop-blur-xl rounded-[2.5rem] shadow-2xl flex flex-col overflow-hidden border border-white/50 relative animate-fade-in">
+    <main class="w-full max-w-2xl h-[90vh] bg-white/90 backdrop-blur-xl rounded-[2.5rem] shadow-2xl flex flex-col overflow-hidden border border-white/60 relative animate-fade-in">
         
-        <header class="px-6 py-5 bg-white/60 backdrop-blur-md border-b border-white/50 z-10 flex items-center justify-between absolute top-0 w-full">
+        <div class="absolute inset-0 z-0 pointer-events-none flex items-center justify-center opacity-[0.05]">
+            <img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" 
+                 class="w-[80%] max-w-[400px] object-contain grayscale-0">
+        </div>
+
+        <header class="px-6 py-5 bg-white/70 backdrop-blur-md border-b border-white/50 z-10 flex items-center justify-between absolute top-0 w-full">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-400 to-cyan-300 flex items-center justify-center text-xl text-white shadow-lg shadow-blue-200">🥑</div>
                 <div>
@@ -72,26 +72,26 @@
             </button>
         </header>
 
-        <div id="chat-container" class="flex-1 overflow-y-auto p-6 pt-24 pb-4 space-y-6 no-scrollbar scroll-smooth">
+        <div id="chat-container" class="flex-1 overflow-y-auto p-6 pt-24 pb-4 space-y-6 no-scrollbar scroll-smooth relative z-10">
             </div>
 
-        <div class="px-6 pb-2 flex gap-2 overflow-x-auto no-scrollbar" id="quick-chips">
-            <button onclick="sendQuickMsg('我是孕妇，早餐吃什么？')" class="whitespace-nowrap px-4 py-2 bg-white/60 hover:bg-white border border-blue-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-blue-500">
-                🤰 孕妇食谱
+        <div class="px-6 pb-2 flex gap-2 overflow-x-auto no-scrollbar relative z-10" id="quick-chips">
+            <button onclick="sendQuickMsg('三餐推荐')" class="whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-blue-50 border border-blue-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-blue-600">
+                🥗 三餐推荐
             </button>
-            <button onclick="sendQuickMsg('想减脂，晚餐推荐')" class="whitespace-nowrap px-4 py-2 bg-white/60 hover:bg-white border border-green-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-green-500">
-                🥗 减脂晚餐
+            <button onclick="sendQuickMsg('单餐推荐（早/午/晚）')" class="whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-blue-50 border border-indigo-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-indigo-600">
+                🍱 单餐推荐
             </button>
-            <button onclick="sendQuickMsg('家里老人有高血压，怎么吃？')" class="whitespace-nowrap px-4 py-2 bg-white/60 hover:bg-white border border-orange-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-orange-500">
-                👴 老人饮食
+            <button onclick="sendQuickMsg('特殊人群饮食推荐')" class="whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-blue-50 border border-orange-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-orange-600">
+                ✨ 特殊人群饮食推荐
             </button>
         </div>
 
-        <div class="p-4 bg-white/60 backdrop-blur-md border-t border-white/50">
+        <div class="p-4 bg-white/70 backdrop-blur-md border-t border-white/50 relative z-10">
             <div class="relative flex items-center bg-white rounded-full border border-slate-200 focus-within:border-blue-300 focus-within:ring-4 focus-within:ring-blue-50 transition-all shadow-sm">
                 <input type="text" id="user-input" 
                     class="w-full bg-transparent px-6 py-4 outline-none text-slate-700 placeholder-slate-400"
-                    placeholder="今天想给谁做饭？..." 
+                    placeholder="今天想怎么吃？..." 
                     autocomplete="off">
                 <button id="send-btn" class="absolute right-2 p-2.5 bg-gradient-to-r from-blue-400 to-cyan-400 hover:from-blue-500 hover:to-cyan-500 text-white rounded-full transition-all transform hover:scale-105 shadow-md shadow-blue-200">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -119,8 +119,8 @@
         const userId = 'user_' + Math.random().toString(36).substr(2, 9);
         let conversationId = null;
 
-        // 快捷发送函数
-        function sendQuickMsg(text) {
+        // 快捷发送函数 (全局可调用)
+        window.sendQuickMsg = function(text) {
             userInput.value = text;
             sendMessage();
         }
@@ -177,43 +177,15 @@
 
             const bubbleStyle = role === 'user'
                 ? 'bg-bubble-user text-slate-700 ml-auto rounded-tr-none shadow-sm'
-                : 'bg-white/90 border border-white/50 text-slate-600 rounded-tl-none shadow-sm backdrop-blur-sm'; // 这里的气泡也加了点透明度
+                : 'bg-white/90 border border-white/50 text-slate-600 rounded-tl-none shadow-sm backdrop-blur-sm'; 
 
             if (role === 'user') div.classList.add('flex-row-reverse');
 
+            // 如果是 AI 消息且不是 loading，解析 Markdown
+            // 注意：这里我们允许 HTML 标签通过，以便开场白的 <a> 标签生效
             const contentHtml = role === 'ai' && !isLoading ? marked.parse(text) : text;
             const loadingClass = isLoading ? 'animate-pulse text-slate-400' : '';
 
             div.innerHTML = `
                 ${avatar}
-                <div class="${bubbleStyle} p-4 rounded-2xl max-w-[85%] text-sm prose ${loadingClass}">
-                    ${contentHtml}
-                </div>
-            `;
-
-            chatContainer.appendChild(div);
-            scrollToBottom();
-            return div.id;
-        }
-
-        function removeMessage(id) {
-            const el = document.getElementById(id);
-            if (el) el.remove();
-        }
-
-        function scrollToBottom() {
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-        }
-
-        sendBtn.addEventListener('click', sendMessage);
-        userInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
-        });
-
-        // 🌟 改动5：修复开场白，加入换行符 \n 和列表语法
-        window.addEventListener('load', () => {
-            appendMessage('ai', `嗨！我是你的智能膳食顾问。🥑\n\n你可以点击下方的快捷按钮，或者直接告诉我：\n\n- ✨ **我是特殊人群（孕妇、老人），三餐怎么吃？**\n- 💪 **最近在健身，求增肌晚餐**\n- 🤷‍♀️ **不知道吃啥，随便推荐点**`);
-        });
-    </script>
-</body>
-</html>
+                <div class="${bubbleStyle} p-4 rounded-2xl max-w-[85%] text-sm prose
