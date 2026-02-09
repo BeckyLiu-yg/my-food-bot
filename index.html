@@ -155,21 +155,21 @@
                     <div class="space-y-3">
                         <div class="flex items-start gap-2">
                             <span>💪</span>
-                            <span class="chat-link" onclick="window.sendQuickMsg('【角色切换：你是茶饮师】请直接列出3款春节刮油解腻的饮品做法。🚫禁止推荐正餐，🚫禁止推荐主食蔬菜搭配，🚫禁止输出“方案ABC”。只输出：饮品名+配方。')">
+                            <span class="chat-link" onclick="window.sendQuickMsg('过年吃太油了，求推荐几款刮油解腻的食谱')">
                                 过年吃太油了，求清肠刮油食谱
                             </span>
                         </div>
 
                         <div class="flex items-start gap-2">
                             <span>🥘</span>
-                            <span class="chat-link" onclick="window.sendQuickMsg('【角色切换：你是粤菜大厨】请教3道适合十几人大家庭分享的春节压轴硬菜（如蒸鱼、大肉）。🚫禁止推荐一人食，🚫禁止搭配米饭和配菜。只输出：菜名+食材+关键步骤。')">
+                            <span class="chat-link" onclick="window.sendQuickMsg('家里聚餐，求推荐几道适合春节的健康硬菜')">
                                 家里聚餐，推荐一道健康硬菜
                             </span>
                         </div>
 
                         <div class="flex items-start gap-2">
                             <span>✨</span>
-                            <span class="chat-link" onclick="window.sendQuickMsg('【特殊人群饮食红线】请列出孕妇和老人在春节聚餐时的3条核心饮食禁忌（如不能吃什么、要注意什么）。只讲原则，不推食谱。')">
+                            <span class="chat-link" onclick="window.sendQuickMsg('我是特殊人群（孕妇、老人），春节怎么吃？')">
                                 我是特殊人群，春节怎么吃？
                             </span>
                         </div>
@@ -179,13 +179,13 @@
         </div>
 
         <div class="px-6 pb-2 flex gap-2 overflow-x-auto no-scrollbar relative z-10" id="quick-chips">
-            <button onclick="window.sendQuickMsg('【只查单品】推荐3款刮油解腻的饮品或凉菜，不要正餐建议')" class="whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-red-50 border border-red-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-red-500 cursor-pointer">
+            <button onclick="window.sendQuickMsg('求推荐刮油解腻的饮品或小菜')" class="whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-red-50 border border-red-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-red-500 cursor-pointer">
                 🥬 清肠食谱
             </button>
-            <button onclick="window.sendQuickMsg('【只查大菜】推荐3道适合全家分享的春节硬菜做法，不要套餐搭配')" class="whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-red-50 border border-orange-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-orange-500 cursor-pointer">
+            <button onclick="window.sendQuickMsg('求推荐适合全家吃的春节硬菜做法')" class="whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-red-50 border border-orange-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-orange-500 cursor-pointer">
                 🥟 健康年夜饭
             </button>
-            <button onclick="window.sendQuickMsg('【只查饮品】推荐3款解酒饮品做法，不要推荐吃饭')" class="whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-red-50 border border-yellow-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-yellow-600 cursor-pointer">
+            <button onclick="window.sendQuickMsg('求推荐几款解酒饮品或消食小菜')" class="whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-red-50 border border-yellow-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-yellow-600 cursor-pointer">
                 🍵 解酒消食
             </button>
         </div>
@@ -272,7 +272,6 @@
             div.className = 'flex gap-4 animate-fade-in';
             div.id = isLoading ? 'loading-msg' : `msg-${Date.now()}`;
             
-            // 头像始终使用云朵精灵图片
             const avatar = role === 'user' 
                 ? '<div class="w-12 h-12 rounded-full bg-red-50 border-2 border-white ring-2 ring-red-100 flex-shrink-0 flex items-center justify-center text-xl shadow-md">👤</div>'
                 : `<img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" 
