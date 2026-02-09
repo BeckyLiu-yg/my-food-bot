@@ -63,9 +63,9 @@
 
     <main class="w-full max-w-2xl h-[90vh] bg-white/90 backdrop-blur-xl rounded-[2.5rem] shadow-2xl flex flex-col overflow-hidden border border-white/60 relative animate-fade-in">
         
-        <div class="absolute inset-0 z-0 pointer-events-none flex items-center justify-center opacity-[0.08]">
+        <div class="absolute inset-0 z-0 pointer-events-none flex items-center justify-center opacity-[0.15]">
             <img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" 
-                 class="w-[70%] max-w-[350px] object-contain">
+                 class="w-[90%] max-w-[500px] object-contain">
         </div>
 
         <header class="px-6 py-5 bg-white/70 backdrop-blur-md border-b border-white/50 z-20 flex items-center justify-between absolute top-0 w-full">
@@ -87,10 +87,10 @@
             
             <div class="flex gap-4 animate-fade-in">
                 <img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" 
-                     class="w-9 h-9 rounded-full flex-shrink-0 border border-white shadow-md object-cover bg-white"
+                     class="w-12 h-12 rounded-full flex-shrink-0 border-2 border-white ring-2 ring-blue-200 shadow-lg object-cover bg-white"
                      alt="AI">
                 
-                <div class="bg-white/90 border border-white/50 text-slate-600 rounded-tl-none shadow-sm backdrop-blur-sm p-4 rounded-2xl max-w-[85%] text-sm leading-relaxed">
+                <div class="bg-white/90 border border-white/50 text-slate-600 rounded-tl-none shadow-sm backdrop-blur-sm p-4 rounded-2xl max-w-[85%] text-sm leading-relaxed mt-1">
                     <p class="mb-2">嗨！我是你的智能膳食顾问。🥑</p>
                     <p class="mb-3">你可以点击下方按钮，或者直接点这里：</p>
                     
@@ -200,73 +200,3 @@
                 });
 
                 const data = await response.json();
-                if (!response.ok) throw new Error(data.message);
-
-                conversationId = data.conversation_id;
-                removeMessage(loadingId);
-                appendMessage('ai', data.answer);
-
-            } catch (error) {
-                removeMessage(loadingId);
-                appendMessage('ai', `⚠️ 网络开小差了: ${error.message}`);
-            }
-        }
-
-        function appendMessage(role, text, isLoading = false) {
-            const div = document.createElement('div');
-            div.className = 'flex gap-4 animate-fade-in';
-            div.id = isLoading ? 'loading-msg' : `msg-${Date.now()}`;
-            
-            // 头像
-            const avatar = role === 'user' 
-                ? '<div class="w-9 h-9 rounded-full bg-indigo-100 border border-indigo-50 flex-shrink-0 flex items-center justify-center text-sm shadow-sm">👤</div>'
-                : `<img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" 
-                        class="w-9 h-9 rounded-full flex-shrink-0 border border-white shadow-md object-cover bg-white"
-                        alt="AI">`;
-
-            const bubbleStyle = role === 'user'
-                ? 'bg-bubble-user text-slate-700 ml-auto rounded-tr-none shadow-sm'
-                : 'bg-white/90 border border-white/50 text-slate-600 rounded-tl-none shadow-sm backdrop-blur-sm'; 
-
-            if (role === 'user') div.classList.add('flex-row-reverse');
-
-            let contentHtml = text;
-            if (role === 'ai' && !isLoading) {
-                // 如果没有包含 HTML 标签，才去解析 Markdown，防止破坏我们手写的 HTML 链接
-                if (!text.includes('<')) {
-                    contentHtml = marked.parse(text);
-                }
-            }
-
-            const loadingClass = isLoading ? 'animate-pulse text-slate-400' : '';
-
-            div.innerHTML = `
-                ${avatar}
-                <div class="${bubbleStyle} p-4 rounded-2xl max-w-[85%] text-sm prose ${loadingClass}">
-                    ${contentHtml}
-                </div>
-            `;
-
-            chatContainer.appendChild(div);
-            scrollToBottom();
-            return div.id;
-        }
-
-        function removeMessage(id) {
-            const el = document.getElementById(id);
-            if (el) el.remove();
-        }
-
-        function scrollToBottom() {
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-        }
-
-        sendBtn.addEventListener('click', sendMessage);
-        userInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
-        });
-    </script>
-</body>
-</html>
-
-
