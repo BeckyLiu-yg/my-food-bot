@@ -36,7 +36,7 @@
                         },
                         float: {
                             '0%, 100%': { transform: 'translateY(0) rotate(-2deg)' },
-                            '50%': { transform: 'translateY(-6px) rotate(2deg)' }, // 减小浮动幅度，更优雅
+                            '50%': { transform: 'translateY(-6px) rotate(2deg)' }, 
                         },
                         glow: {
                             '0%': { boxShadow: '0 0 5px rgba(251, 146, 60, 0.3)' }, 
@@ -68,7 +68,6 @@
         .prose ul { list-style-type: disc; padding-left: 1.2rem; margin-bottom: 0.5rem; }
         .prose strong { color: #881337; font-weight: 700; }
 
-        /* 霄灯样式 - 尺寸优化版 */
         .sky-lantern {
             background: linear-gradient(180deg, #ffedd5 0%, #fb923c 40%, #ef4444 100%);
             position: relative;
@@ -92,50 +91,38 @@
         </div>
 
         <div class="absolute top-0 left-0 w-full z-30 pointer-events-none flex justify-center gap-3 sm:gap-6 pt-2">
-            
             <div class="flex flex-col items-center animate-float-slow">
                 <div class="h-6 w-[1px] bg-red-300"></div> 
-                <div class="sky-lantern w-9 h-12 rounded-[4px] flex items-center justify-center text-lg font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">
-                    春
-                </div>
+                <div class="sky-lantern w-9 h-12 rounded-[4px] flex items-center justify-center text-lg font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">春</div>
                 <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div>
                 <div class="h-4 w-[1px] bg-red-400/60"></div>
             </div>
-
             <div class="flex flex-col items-center animate-float-medium" style="animation-delay: 0.8s;">
                 <div class="h-10 w-[1px] bg-red-300"></div>
-                <div class="sky-lantern w-9 h-12 rounded-[4px] flex items-center justify-center text-lg font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">
-                    节
-                </div>
+                <div class="sky-lantern w-9 h-12 rounded-[4px] flex items-center justify-center text-lg font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">节</div>
                 <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div>
                 <div class="h-4 w-[1px] bg-red-400/60"></div>
             </div>
-
             <div class="flex flex-col items-center animate-float-fast" style="animation-delay: 0.4s;">
                 <div class="h-8 w-[1px] bg-red-300"></div>
-                <div class="sky-lantern w-9 h-12 rounded-[4px] flex items-center justify-center text-lg font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">
-                    快
-                </div>
+                <div class="sky-lantern w-9 h-12 rounded-[4px] flex items-center justify-center text-lg font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">快</div>
                 <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div>
                 <div class="h-4 w-[1px] bg-red-400/60"></div>
             </div>
-
             <div class="flex flex-col items-center animate-float-slow" style="animation-delay: 1.2s;">
                 <div class="h-4 w-[1px] bg-red-300"></div>
-                <div class="sky-lantern w-9 h-12 rounded-[4px] flex items-center justify-center text-lg font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">
-                    乐
-                </div>
+                <div class="sky-lantern w-9 h-12 rounded-[4px] flex items-center justify-center text-lg font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">乐</div>
                 <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div>
                 <div class="h-4 w-[1px] bg-red-400/60"></div>
             </div>
-
         </div>
 
         <header class="px-6 py-4 bg-white/70 backdrop-blur-md border-b border-white/50 z-20 flex items-center justify-between absolute top-0 w-full mt-1">
             <div class="flex items-center gap-4 pl-2"> 
                 <div class="relative">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-red-500 to-orange-400 flex items-center justify-center text-xl text-white shadow-lg shadow-red-200">
-                        🥑
+                    <div class="w-10 h-10 rounded-full bg-white border border-red-100 flex items-center justify-center overflow-hidden shadow-lg shadow-red-200">
+                         <img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" 
+                              class="w-full h-full object-cover">
                     </div>
                     <div class="absolute -bottom-1 -right-1 bg-yellow-400 text-red-600 text-[9px] font-bold w-4 h-4 flex items-center justify-center rounded-full border-2 border-white shadow-sm">
                         福
@@ -165,7 +152,7 @@
                      alt="AI">
                 
                 <div class="bg-white/90 border border-white/50 text-slate-600 rounded-tl-none shadow-sm backdrop-blur-sm p-4 rounded-2xl max-w-[85%] text-sm leading-relaxed mt-1">
-                    <p class="mb-2">过年好！🧨 我是你的智能膳食顾问。</p>
+                    <p class="mb-2">过年好！🧨 我是你的智能膳食顾问 ☁️</p>
                     <p class="mb-3">大鱼大肉吃多了？这里有健康锦囊：</p>
                     
                     <div class="space-y-3">
@@ -215,4 +202,128 @@
                     autocomplete="off">
                 <button id="send-btn" class="absolute right-2 p-2.5 bg-gradient-to-r from-red-400 to-orange-400 hover:from-red-500 hover:to-orange-500 text-white rounded-full transition-all transform hover:scale-105 shadow-md shadow-red-200 cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5
+                        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                    </svg>
+                </button>
+            </div>
+            <p class="text-center text-[10px] text-slate-400 mt-3 font-medium tracking-wide">
+                Powered with 🧨 by Becky & AI
+            </p>
+        </div>
+
+    </main>
+
+    <script>
+        // ================= 配置区域 =================
+        const API_KEY = 'app-Usm9V9geo1e5FbXkcRmMIDlr'; 
+        const BASE_URL = 'https://api.dify.ai/v1';
+        // ===========================================
+
+        const chatContainer = document.getElementById('chat-container');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+        
+        const userId = 'user_' + Math.random().toString(36).substr(2, 9);
+        let conversationId = null;
+
+        window.sendQuickMsg = function(text) {
+            console.log("点击了:", text);
+            if(userInput) {
+                userInput.value = text;
+                sendMessage();
+            }
+        }
+
+        async function sendMessage() {
+            const query = userInput.value.trim();
+            if (!query) return;
+
+            appendMessage('user', query);
+            userInput.value = '';
+            
+            const loadingId = appendMessage('ai', 'Thinking...', true);
+
+            try {
+                const response = await fetch(`${BASE_URL}/chat-messages`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${API_KEY}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        inputs: {},
+                        query: query,
+                        response_mode: "blocking",
+                        conversation_id: conversationId,
+                        user: userId
+                    })
+                });
+
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.message);
+
+                conversationId = data.conversation_id;
+                removeMessage(loadingId);
+                appendMessage('ai', data.answer);
+
+            } catch (error) {
+                removeMessage(loadingId);
+                appendMessage('ai', `⚠️ 网络开小差了: ${error.message}`);
+            }
+        }
+
+        function appendMessage(role, text, isLoading = false) {
+            const div = document.createElement('div');
+            div.className = 'flex gap-4 animate-fade-in';
+            div.id = isLoading ? 'loading-msg' : `msg-${Date.now()}`;
+            
+            // 🌟 核心修改：JS 里的默认头像也换成了图片，彻底告别牛油果
+            const avatar = role === 'user' 
+                ? '<div class="w-12 h-12 rounded-full bg-red-50 border-2 border-white ring-2 ring-red-100 flex-shrink-0 flex items-center justify-center text-xl shadow-md">👤</div>'
+                : `<img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" 
+                        class="w-12 h-12 rounded-full flex-shrink-0 border-2 border-white ring-2 ring-red-200 shadow-lg object-cover bg-white"
+                        alt="AI">`;
+
+            const bubbleStyle = role === 'user'
+                ? 'bg-bubble-user text-slate-700 ml-auto rounded-tr-none shadow-sm'
+                : 'bg-white/90 border border-white/50 text-slate-600 rounded-tl-none shadow-sm backdrop-blur-sm'; 
+
+            if (role === 'user') div.classList.add('flex-row-reverse');
+
+            let contentHtml = text;
+            if (role === 'ai' && !isLoading) {
+                if (!text.includes('<')) {
+                    contentHtml = marked.parse(text);
+                }
+            }
+
+            const loadingClass = isLoading ? 'animate-pulse text-slate-400' : '';
+
+            div.innerHTML = `
+                ${avatar}
+                <div class="${bubbleStyle} p-4 rounded-2xl max-w-[85%] text-sm prose ${loadingClass} mt-1">
+                    ${contentHtml}
+                </div>
+            `;
+
+            chatContainer.appendChild(div);
+            scrollToBottom();
+            return div.id;
+        }
+
+        function removeMessage(id) {
+            const el = document.getElementById(id);
+            if (el) el.remove();
+        }
+
+        function scrollToBottom() {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
+</body>
+</html>
