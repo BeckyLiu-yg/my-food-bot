@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>云朵餐厅 - 春节限定版</title>
+    <title>云朵餐厅 - 新年限定版</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -28,7 +28,7 @@
                         'float-medium': 'float 5s ease-in-out infinite',
                         'float-fast': 'float 4s ease-in-out infinite',
                         'glow': 'glow 3s ease-in-out infinite alternate',
-                        'snow-fall': 'snowFall linear infinite',
+                        'snow': 'snow 10s linear infinite',
                     },
                     keyframes: {
                         fadeIn: {
@@ -43,10 +43,10 @@
                             '0%': { boxShadow: '0 0 5px rgba(251, 146, 60, 0.3)' }, 
                             '100%': { boxShadow: '0 0 15px rgba(251, 146, 60, 0.8)' },
                         },
-                        snowFall: {
-                            '0%': { transform: 'translateY(-10vh) translateX(0)', opacity: '0' },
-                            '10%': { opacity: '0.8' },
-                            '100%': { transform: 'translateY(100vh) translateX(20px)', opacity: '0.2' },
+                        snow: {
+                            '0%': { transform: 'translateY(-10px) translateX(0)', opacity: '0' },
+                            '20%': { opacity: '0.8' },
+                            '100%': { transform: 'translateY(100vh) translateX(20px)', opacity: '0' },
                         }
                     }
                 }
@@ -74,7 +74,7 @@
         .prose ul { list-style-type: disc; padding-left: 1.2rem; margin-bottom: 0.5rem; }
         .prose strong { color: #881337; font-weight: 700; }
 
-        /* 🏮 精致霄灯 */
+        /* 🏮 霄灯 */
         .sky-lantern {
             background: linear-gradient(180deg, #ffedd5 0%, #fb923c 40%, #ef4444 100%);
             position: relative;
@@ -86,34 +86,30 @@
             content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: rgba(255,255,255,0.2);
         }
 
-        /* ❄️ 高级感瑞雪 (Cinematic Snow) */
+        /* ❄️ 修复版瑞雪 - 全局固定 */
         .snowflake {
-            position: absolute;
-            background: white;
+            position: fixed;
+            top: -10px;
+            color: #fff;
+            background: #fff;
             border-radius: 50%;
-            pointer-events: none; /* 不挡点击 */
-            filter: blur(1px); /* 柔光效果 */
+            pointer-events: none; /* 穿透点击 */
+            z-index: 9999; /* 确保在最上层 */
+            box-shadow: 0 0 5px rgba(255,255,255,0.8);
         }
-        /* 远处的雪（小、慢、虚） */
-        .snow-far { width: 4px; height: 4px; z-index: 1; opacity: 0.4; animation-duration: 15s; filter: blur(2px); }
-        /* 中间的雪（中、正常） */
-        .snow-mid { width: 6px; height: 6px; z-index: 20; opacity: 0.7; animation-duration: 10s; }
-        /* 近处的雪（大、快、亮） */
-        .snow-near { width: 8px; height: 8px; z-index: 40; opacity: 0.9; animation-duration: 7s; box-shadow: 0 0 5px rgba(255,255,255,0.8); }
-
     </style>
 </head>
 
-<body class="bg-gradient-to-br from-rose-100 via-orange-50 to-red-100 h-screen flex flex-col items-center justify-center p-4 text-slate-600 overflow-hidden relative">
+<body class="bg-gradient-to-br from-rose-100 via-orange-50 to-red-100 h-screen flex flex-col items-center justify-center p-4 text-slate-600 relative overflow-hidden">
 
-    <div class="snowflake snow-far" style="left: 10%; animation-name: snow-fall; animation-delay: 0s;"></div>
-    <div class="snowflake snow-mid" style="left: 20%; animation-name: snow-fall; animation-delay: 2s;"></div>
-    <div class="snowflake snow-near" style="left: 35%; animation-name: snow-fall; animation-delay: 4s;"></div>
-    <div class="snowflake snow-far" style="left: 50%; animation-name: snow-fall; animation-delay: 1s;"></div>
-    <div class="snowflake snow-mid" style="left: 65%; animation-name: snow-fall; animation-delay: 3s;"></div>
-    <div class="snowflake snow-near" style="left: 80%; animation-name: snow-fall; animation-delay: 5s;"></div>
-    <div class="snowflake snow-mid" style="left: 90%; animation-name: snow-fall; animation-delay: 0.5s;"></div>
-    <div class="snowflake snow-far" style="left: 5%; animation-name: snow-fall; animation-delay: 6s;"></div>
+    <div class="snowflake w-1 h-1 opacity-60" style="left: 10%; animation: snow 8s linear infinite; animation-delay: 0s;"></div>
+    <div class="snowflake w-1.5 h-1.5 opacity-80" style="left: 20%; animation: snow 12s linear infinite; animation-delay: 4s;"></div>
+    <div class="snowflake w-2 h-2 opacity-50 blur-[1px]" style="left: 30%; animation: snow 10s linear infinite; animation-delay: 2s;"></div>
+    <div class="snowflake w-1 h-1 opacity-70" style="left: 45%; animation: snow 14s linear infinite; animation-delay: 1s;"></div>
+    <div class="snowflake w-2 h-2 opacity-60 blur-[1px]" style="left: 60%; animation: snow 9s linear infinite; animation-delay: 5s;"></div>
+    <div class="snowflake w-1.5 h-1.5 opacity-80" style="left: 75%; animation: snow 11s linear infinite; animation-delay: 3s;"></div>
+    <div class="snowflake w-1 h-1 opacity-50" style="left: 90%; animation: snow 13s linear infinite; animation-delay: 0.5s;"></div>
+    <div class="snowflake w-2 h-2 opacity-40 blur-[2px]" style="left: 5%; animation: snow 15s linear infinite; animation-delay: 7s;"></div>
 
     <main class="w-full max-w-2xl h-[90vh] bg-white/90 backdrop-blur-xl rounded-[2.5rem] shadow-2xl flex flex-col overflow-hidden border border-white/60 relative animate-fade-in z-10">
         
@@ -125,25 +121,25 @@
         <div class="absolute top-0 left-0 w-full z-30 pointer-events-none flex justify-center gap-3 sm:gap-6 pt-2">
             <div class="flex flex-col items-center animate-float-slow">
                 <div class="h-6 w-[1px] bg-red-300"></div> 
-                <div class="sky-lantern w-9 h-12 rounded-[4px] flex items-center justify-center text-lg font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">春</div>
+                <div class="sky-lantern w-9 h-12 rounded-[4px] flex items-center justify-center text-lg font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">新</div>
                 <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div>
                 <div class="h-4 w-[1px] bg-red-400/60"></div>
             </div>
             <div class="flex flex-col items-center animate-float-medium" style="animation-delay: 0.8s;">
                 <div class="h-10 w-[1px] bg-red-300"></div>
-                <div class="sky-lantern w-9 h-12 rounded-[4px] flex items-center justify-center text-lg font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">节</div>
+                <div class="sky-lantern w-9 h-12 rounded-[4px] flex items-center justify-center text-lg font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">年</div>
                 <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div>
                 <div class="h-4 w-[1px] bg-red-400/60"></div>
             </div>
             <div class="flex flex-col items-center animate-float-fast" style="animation-delay: 0.4s;">
                 <div class="h-8 w-[1px] bg-red-300"></div>
-                <div class="sky-lantern w-9 h-12 rounded-[4px] flex items-center justify-center text-lg font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">快</div>
+                <div class="sky-lantern w-9 h-12 rounded-[4px] flex items-center justify-center text-lg font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">限</div>
                 <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div>
                 <div class="h-4 w-[1px] bg-red-400/60"></div>
             </div>
             <div class="flex flex-col items-center animate-float-slow" style="animation-delay: 1.2s;">
                 <div class="h-4 w-[1px] bg-red-300"></div>
-                <div class="sky-lantern w-9 h-12 rounded-[4px] flex items-center justify-center text-lg font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">乐</div>
+                <div class="sky-lantern w-9 h-12 rounded-[4px] flex items-center justify-center text-lg font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">定</div>
                 <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div>
                 <div class="h-4 w-[1px] bg-red-400/60"></div>
             </div>
@@ -164,7 +160,7 @@
                     <h1 class="font-bold text-base text-slate-700 tracking-wide flex items-center gap-1 drop-shadow-sm bg-white/30 backdrop-blur-sm rounded px-1">
                         云朵餐厅
                     </h1>
-                    <p class="text-[9px] text-slate-400 uppercase tracking-wider pl-1">AI Nutritionist</p>
+                    <p class="text-[9px] text-red-400 uppercase tracking-wider pl-1 font-bold">新年限定版</p>
                 </div>
             </div>
             <button onclick="location.reload()" class="w-8 h-8 rounded-full hover:bg-slate-100/50 flex items-center justify-center transition text-slate-400 hover:text-red-500 cursor-pointer z-50">
@@ -191,14 +187,12 @@
                                 过年吃太油了，求清肠刮油食谱
                             </span>
                         </div>
-
                         <div class="flex items-start gap-2">
                             <span>🥘</span>
                             <span class="chat-link" onclick="window.sendQuickMsg('家里聚餐，求推荐几道适合春节的健康硬菜（蒸煮为主）')">
                                 家里聚餐，推荐一道健康硬菜
                             </span>
                         </div>
-
                         <div class="flex items-start gap-2">
                             <span>🍵</span>
                             <span class="chat-link" onclick="window.sendQuickMsg('过年喝多了，求推荐几款解酒饮品或消食小菜')">
@@ -210,33 +204,39 @@
             </div>
         </div>
 
-        <div class="px-6 pb-2 flex flex-nowrap gap-3 overflow-x-auto no-scrollbar relative z-10 items-center" id="quick-chips">
-            
-            <button onclick="window.sendQuickMsg('求推荐刮油解腻的饮品或小菜')" class="flex-shrink-0 whitespace-nowrap px-4 py-2 bg-red-50 hover:bg-red-100 border border-red-200 rounded-full text-xs text-red-600 transition shadow-sm hover:shadow-md font-medium cursor-pointer">
-                🧨 刮油解腻
-            </button>
-            <button onclick="window.sendQuickMsg('求推荐适合全家吃的春节硬菜做法')" class="flex-shrink-0 whitespace-nowrap px-4 py-2 bg-red-50 hover:bg-red-100 border border-red-200 rounded-full text-xs text-red-600 transition shadow-sm hover:shadow-md font-medium cursor-pointer">
-                🥟 压轴硬菜
-            </button>
-            <button onclick="window.sendQuickMsg('求推荐解酒饮品或消食小菜')" class="flex-shrink-0 whitespace-nowrap px-4 py-2 bg-red-50 hover:bg-red-100 border border-red-200 rounded-full text-xs text-red-600 transition shadow-sm hover:shadow-md font-medium cursor-pointer">
-                🍵 解酒消食
-            </button>
-            
-            <div class="w-[1px] h-5 bg-slate-300/50 flex-shrink-0 mx-1"></div>
+        <div class="px-4 pb-2 relative z-10">
+            <div class="grid grid-cols-3 gap-2">
+                
+                <button onclick="window.sendQuickMsg('求推荐刮油解腻的饮品或小菜')" class="py-2.5 bg-red-50 hover:bg-red-100 border border-red-200 rounded-2xl text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex flex-col items-center justify-center gap-1 cursor-pointer">
+                    <span>🧨</span>
+                    <span>刮油解腻</span>
+                </button>
+                <button onclick="window.sendQuickMsg('求推荐适合全家吃的春节硬菜做法')" class="py-2.5 bg-red-50 hover:bg-red-100 border border-red-200 rounded-2xl text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex flex-col items-center justify-center gap-1 cursor-pointer">
+                    <span>🥟</span>
+                    <span>压轴硬菜</span>
+                </button>
+                <button onclick="window.sendQuickMsg('求推荐解酒饮品或消食小菜')" class="py-2.5 bg-red-50 hover:bg-red-100 border border-red-200 rounded-2xl text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex flex-col items-center justify-center gap-1 cursor-pointer">
+                    <span>🍵</span>
+                    <span>解酒消食</span>
+                </button>
+                
+                <button onclick="window.sendQuickMsg('帮我规划今天的全天三餐，要营养均衡')" class="py-2.5 bg-white/90 hover:bg-green-50 border border-green-100 rounded-2xl text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-green-600 font-medium flex flex-col items-center justify-center gap-1 cursor-pointer">
+                    <span>🍱</span>
+                    <span>全天规划</span>
+                </button>
+                <button onclick="window.sendQuickMsg('推荐一份营养均衡的单人套餐')" class="py-2.5 bg-white/90 hover:bg-orange-50 border border-orange-100 rounded-2xl text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-orange-600 font-medium flex flex-col items-center justify-center gap-1 cursor-pointer">
+                    <span>🥗</span>
+                    <span>单餐推荐</span>
+                </button>
+                <button onclick="window.sendQuickMsg('我是特殊人群（如孕妇、老人），请推荐饮食建议')" class="py-2.5 bg-white/90 hover:bg-yellow-50 border border-yellow-100 rounded-2xl text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-yellow-600 font-medium flex flex-col items-center justify-center gap-1 cursor-pointer">
+                    <span>🛡️</span>
+                    <span>特殊人群</span>
+                </button>
 
-            <button onclick="window.sendQuickMsg('帮我规划今天的全天三餐，要营养均衡')" class="flex-shrink-0 whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-green-50 border border-green-200 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-green-600 cursor-pointer">
-                🍱 全天规划
-            </button>
-            <button onclick="window.sendQuickMsg('推荐一份营养均衡的单人套餐')" class="flex-shrink-0 whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-orange-50 border border-orange-200 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-orange-600 cursor-pointer">
-                🥗 单餐推荐
-            </button>
-            <button onclick="window.sendQuickMsg('我是特殊人群（如孕妇、老人），请推荐饮食建议')" class="flex-shrink-0 whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-yellow-50 border border-yellow-200 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-yellow-600 cursor-pointer">
-                🛡️ 特殊人群
-            </button>
-
+            </div>
         </div>
 
-        <div class="p-4 bg-white/70 backdrop-blur-md border-t border-white/50 relative z-10">
+        <div class="p-4 bg-white/70 backdrop-blur-md border-t border-white/50 relative z-10 rounded-b-[2.5rem]">
             <div class="relative flex items-center bg-white rounded-full border border-slate-200 focus-within:border-red-300 focus-within:ring-4 focus-within:ring-red-50 transition-all shadow-sm">
                 <input type="text" id="user-input" 
                     class="w-full bg-transparent px-6 py-4 outline-none text-slate-700 placeholder-slate-400"
@@ -256,7 +256,6 @@
     </main>
 
     <script>
-        // ... JS 部分保持不变 ...
         // ================= 配置区域 =================
         const API_KEY = 'app-Usm9V9geo1e5FbXkcRmMIDlr'; 
         const BASE_URL = 'https://api.dify.ai/v1';
