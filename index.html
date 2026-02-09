@@ -83,13 +83,28 @@
         </header>
 
         <div id="chat-container" class="flex-1 overflow-y-auto p-6 pt-24 pb-4 space-y-6 no-scrollbar scroll-smooth relative z-10">
+            
+            <div class="flex gap-4 animate-fade-in">
+                <img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" 
+                     class="w-9 h-9 rounded-full flex-shrink-0 border border-white shadow-md object-cover bg-white"
+                     alt="AI">
+                
+                <div class="bg-white/90 border border-white/50 text-slate-600 rounded-tl-none shadow-sm backdrop-blur-sm p-4 rounded-2xl max-w-[85%] text-sm prose">
+                    嗨！我是你的智能膳食顾问。🥑<br><br>
+                    你可以点击下方按钮，或者直接点这里：<br><br>
+                    🤷‍♀️ <span class="chat-link" onclick="window.sendQuickMsg('不知道吃啥，随便推荐点')">不知道吃啥，随便推荐点</span><br><br>
+                    💪 <span class="chat-link" onclick="window.sendQuickMsg('最近在健身，求增肌全餐')">最近在健身，求增肌全餐</span><br><br>
+                    ✨ <span class="chat-link" onclick="window.sendQuickMsg('我是特殊人群（孕妇、老人等），三餐怎么吃？')">我是特殊人群（孕妇、老人等），三餐怎么吃？</span>
+                </div>
             </div>
+
+        </div>
 
         <div class="px-6 pb-2 flex gap-2 overflow-x-auto no-scrollbar relative z-10" id="quick-chips">
             <button onclick="window.sendQuickMsg('三餐推荐')" class="whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-blue-50 border border-blue-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-blue-600 cursor-pointer">
                 🥗 三餐推荐
             </button>
-            <button onclick="window.sendQuickMsg('单餐推荐（午餐）')" class="whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-blue-50 border border-indigo-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-indigo-600 cursor-pointer">
+            <button onclick="window.sendQuickMsg('单餐推荐（早餐/午餐/晚餐）')" class="whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-blue-50 border border-indigo-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-indigo-600 cursor-pointer">
                 🍱 单餐推荐
             </button>
             <button onclick="window.sendQuickMsg('特殊人群饮食推荐')" class="whitespace-nowrap px-4 py-2 bg-white/80 hover:bg-blue-50 border border-orange-100 rounded-full text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-orange-600 cursor-pointer">
@@ -97,4 +112,4 @@
             </button>
         </div>
 
-        <div class="p-4 bg
+        <div class="p-4 bg-white/70 backdrop-blur-md border-t border-
