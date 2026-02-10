@@ -64,18 +64,46 @@
             background-color: #FFF1F2;
         }
 
-        /* 📱 移动端排版优化 (手机看字更舒服) */
+        /* --- 📱 核心修复：移动端排版优化 (Prose Mobile) --- */
+        /* 增加行高，拉开段距，手机阅读不累 */
         .prose-mobile {
-            font-size: 0.95rem;
-            line-height: 1.75;
-            color: #475569;
+            font-size: 0.95rem; 
+            line-height: 1.8;  /* 黄金行高 */
+            color: #475569;     
         }
-        .prose-mobile p { margin-bottom: 0.75rem; }
-        .prose-mobile ul { list-style-type: none; padding-left: 0; margin-bottom: 0.75rem; }
-        .prose-mobile li { margin-bottom: 0.5rem; position: relative; padding-left: 1.2em; }
-        .prose-mobile li::before { content: '•'; position: absolute; left: 0; color: #fb7185; font-weight: bold; }
-        .prose-mobile strong { color: #be123c; font-weight: 700; }
-        .prose-mobile h3 { font-size: 1.1rem; font-weight: 700; color: #be123c; margin-top: 1.2rem; margin-bottom: 0.5rem; }
+        .prose-mobile p {
+            margin-bottom: 1rem; /* 段落间距加大 */
+        }
+        .prose-mobile ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 1rem;
+        }
+        .prose-mobile li {
+            margin-bottom: 0.6rem;
+            position: relative;
+            padding-left: 1.4em;
+        }
+        .prose-mobile li::before {
+            content: '☁️'; /* 用可爱的云朵代替圆点 */
+            font-size: 0.8em;
+            position: absolute;
+            left: 0;
+            top: 0.2em;
+        }
+        .prose-mobile strong {
+            color: #be123c;
+            font-weight: 700;
+        }
+        .prose-mobile h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #be123c;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            border-bottom: 1px dashed #fecdd3;
+            padding-bottom: 0.2rem;
+        }
 
         /* 🏮 霄灯 */
         .sky-lantern {
@@ -97,7 +125,7 @@
             width: 100vw;
             height: 100vh;
             pointer-events: none;
-            z-index: 9999;
+            z-index: 9999; 
             overflow: hidden;
         }
         .snowflake {
@@ -131,34 +159,34 @@
                  class="w-[90%] max-w-[500px] object-contain">
         </div>
 
-        <div class="absolute top-[-10px] left-0 w-full pointer-events-none flex justify-center gap-6 pt-2 opacity-80" style="z-index: 1;">
+        <div class="absolute top-[65px] left-0 w-full pointer-events-none flex justify-center gap-6 pt-2 opacity-90 z-0">
             <div class="flex flex-col items-center animate-float-slow">
-                <div class="h-12 w-[1px] bg-red-300"></div> 
+                <div class="h-10 w-[1px] bg-red-300"></div> 
                 <div class="sky-lantern w-8 h-10 rounded-[4px] flex items-center justify-center text-base font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">新</div>
                 <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div>
                 <div class="h-3 w-[1px] bg-red-400/60"></div>
             </div>
             <div class="flex flex-col items-center animate-float-medium" style="animation-delay: 0.8s;">
-                <div class="h-16 w-[1px] bg-red-300"></div>
+                <div class="h-14 w-[1px] bg-red-300"></div>
                 <div class="sky-lantern w-8 h-10 rounded-[4px] flex items-center justify-center text-base font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">年</div>
                 <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div>
                 <div class="h-3 w-[1px] bg-red-400/60"></div>
             </div>
             <div class="flex flex-col items-center animate-float-fast" style="animation-delay: 0.4s;">
-                <div class="h-14 w-[1px] bg-red-300"></div>
+                <div class="h-12 w-[1px] bg-red-300"></div>
                 <div class="sky-lantern w-8 h-10 rounded-[4px] flex items-center justify-center text-base font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">快</div>
                 <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div>
                 <div class="h-3 w-[1px] bg-red-400/60"></div>
             </div>
             <div class="flex flex-col items-center animate-float-slow" style="animation-delay: 1.2s;">
-                <div class="h-10 w-[1px] bg-red-300"></div>
+                <div class="h-8 w-[1px] bg-red-300"></div>
                 <div class="sky-lantern w-8 h-10 rounded-[4px] flex items-center justify-center text-base font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">乐</div>
                 <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div>
                 <div class="h-3 w-[1px] bg-red-400/60"></div>
             </div>
         </div>
 
-        <header class="px-6 py-4 bg-white/80 backdrop-blur-md border-b border-white/50 z-20 flex items-center justify-between absolute top-0 w-full mt-1">
+        <header class="px-6 py-4 bg-white/80 backdrop-blur-md border-b border-white/50 z-50 flex items-center justify-between absolute top-0 w-full mt-1">
             <div class="flex items-center gap-4 pl-2"> 
                 <div class="relative">
                     <div class="w-10 h-10 rounded-full bg-white border border-red-100 flex items-center justify-center overflow-hidden shadow-lg shadow-red-200">
@@ -183,7 +211,7 @@
             </button>
         </header>
 
-        <div id="chat-container" class="flex-1 overflow-y-auto p-6 pt-24 pb-4 space-y-6 no-scrollbar scroll-smooth relative z-10">
+        <div id="chat-container" class="flex-1 overflow-y-auto p-6 pt-36 pb-4 space-y-6 no-scrollbar scroll-smooth relative z-10">
             <div class="flex gap-4 animate-fade-in">
                 <img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" 
                      class="w-12 h-12 rounded-full flex-shrink-0 border-2 border-white ring-2 ring-red-200 shadow-lg object-cover bg-white"
@@ -223,9 +251,9 @@
                     <span>🧨</span>
                     <span class="truncate">刮油解腻</span>
                 </button>
-                <button onclick="window.sendQuickMsg('家里聚餐，求推荐一道春节压轴硬菜')" class="h-7 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1 cursor-pointer">
+                <button onclick="window.sendQuickMsg('家里聚餐，帮我推荐一份菜单')" class="h-7 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1 cursor-pointer">
                     <span>🥟</span>
-                    <span class="truncate">压轴硬菜</span>
+                    <span class="truncate">聚餐菜单</span>
                 </button>
                 <button onclick="window.sendQuickMsg('求推荐几款解酒饮品或消食小菜')" class="h-7 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1 cursor-pointer">
                     <span>🍵</span>
@@ -267,11 +295,10 @@
     </main>
 
     <script>
-        // ================= 配置区域 =================
+        // ... (JS 代码保持不变) ...
         const API_KEY = 'app-Usm9V9geo1e5FbXkcRmMIDlr'; 
         const BASE_URL = 'https://api.dify.ai/v1';
-        // ===========================================
-
+        
         const chatContainer = document.getElementById('chat-container');
         const userInput = document.getElementById('user-input');
         const sendBtn = document.getElementById('send-btn');
@@ -279,7 +306,6 @@
         const userId = 'user_' + Math.random().toString(36).substr(2, 9);
         let conversationId = null;
 
-        // ❄️ 瑞雪生成器 (保留逻辑)
         function createSnowflakes() {
             const container = document.getElementById('snow-container');
             const snowflakeCount = 200; 
@@ -390,7 +416,7 @@
 
             const loadingClass = isLoading ? 'animate-pulse text-slate-400' : '';
 
-            // 应用 .prose-mobile 样式
+            // 关键：应用 .prose-mobile 样式
             div.innerHTML = `
                 ${avatar}
                 <div class="${bubbleStyle} p-4 rounded-2xl max-w-[85%] ${role === 'ai' ? 'prose-mobile' : 'text-sm'} ${loadingClass} mt-1">
