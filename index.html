@@ -28,6 +28,7 @@
                         'float-medium': 'float 5s ease-in-out infinite',
                         'float-fast': 'float 4s ease-in-out infinite',
                         'glow': 'glow 3s ease-in-out infinite alternate',
+                        'pop-in': 'popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards', // 福字弹跳动画
                     },
                     keyframes: {
                         fadeIn: {
@@ -41,6 +42,10 @@
                         glow: {
                             '0%': { boxShadow: '0 0 5px rgba(251, 146, 60, 0.3)' }, 
                             '100%': { boxShadow: '0 0 15px rgba(251, 146, 60, 0.8)' },
+                        },
+                        popIn: {
+                            '0%': { transform: 'scale(0) rotate(-45deg)', opacity: '0' },
+                            '100%': { transform: 'scale(1) rotate(12deg)', opacity: '1' },
                         }
                     }
                 }
@@ -64,91 +69,35 @@
             background-color: #FFF1F2;
         }
 
-        /* --- 🎨 核心升级：视觉降噪排版引擎 --- */
-        
-        /* 📱 默认 (手机): 紧凑但清晰 */
-        .prose-responsive {
-            font-size: 0.9rem; /* 14.4px */
-            line-height: 1.7;
-            color: #334155; /* Slate-700: 字色加深一点，更清晰 */
-        }
-        
-        /* 段落：适中距离 */
+        /* Prose Mobile */
+        .prose-responsive { font-size: 0.9rem; line-height: 1.7; color: #334155; }
         .prose-responsive p { margin-bottom: 0.8rem; }
-        
-        /* 列表：去红 */
         .prose-responsive ul { list-style-type: none; padding-left: 0; margin-bottom: 1rem; }
         .prose-responsive li { margin-bottom: 0.5rem; position: relative; padding-left: 1.4em; }
-        
-        /* 列表符号：保留一点点粉色作为点缀 */
-        .prose-responsive li::before {
-            content: '☁️'; 
-            font-size: 0.8em;
-            position: absolute;
-            left: 0;
-            top: 0.25em;
-            opacity: 0.8;
-        }
-
-        /* 重点强调：❌去红！✅改深灰 */
-        /* 以前是红色，现在改为深色，减少视觉疲劳 */
-        .prose-responsive strong {
-            color: #1e293b; /* Slate-800 */
-            font-weight: 700;
-            background: linear-gradient(120deg, transparent 0%, transparent 100%); /* 预留高亮位 */
-        }
-
-        /* 标题分块：✅ 加背景块，增强分割感 */
+        .prose-responsive li::before { content: '☁️'; font-size: 0.8em; position: absolute; left: 0; top: 0.25em; opacity: 0.8; }
+        .prose-responsive strong { color: #1e293b; font-weight: 700; background: linear-gradient(120deg, transparent 0%, transparent 100%); }
         .prose-responsive h3 { 
-            font-size: 1.05rem; 
-            font-weight: 700; 
-            color: #be123c; /* 标题保留红色，作为视觉引导 */
-            
-            /* 关键改动：胶囊背景 */
-            background-color: #fff1f2; /* 极淡的粉色背景 */
-            padding: 0.4rem 0.8rem;
-            border-radius: 0.5rem;
-            
-            /* 间距控制 */
-            margin-top: 1.5rem; 
-            margin-bottom: 0.8rem;
-            display: inline-block; /* 让背景块只包住文字 */
+            font-size: 1.05rem; font-weight: 700; color: #be123c; 
+            background-color: #fff1f2; padding: 0.4rem 0.8rem; border-radius: 0.5rem;
+            margin-top: 1.5rem; margin-bottom: 0.8rem; display: inline-block; 
         }
+        .prose-responsive hr { border-color: #ffe4e6; margin: 1.5rem 0; }
 
-        /* 分割线 */
-        .prose-responsive hr {
-            border-color: #ffe4e6;
-            margin: 1.5rem 0;
-        }
-
-        /* 💻 电脑端微调 */
         @media (min-width: 640px) {
             .prose-responsive { font-size: 1rem; line-height: 1.8; }
             .prose-responsive h3 { font-size: 1.15rem; margin-top: 2rem; }
         }
 
         /* 🏮 霄灯 */
-        .sky-lantern {
-            background: linear-gradient(180deg, #ffedd5 0%, #fb923c 40%, #ef4444 100%);
-            position: relative;
-        }
-        .sky-lantern::before {
-            content: ''; position: absolute; top: 0; left: 50%; width: 1px; height: 100%; background: rgba(255,255,255,0.3);
-        }
-        .sky-lantern::after {
-            content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: rgba(255,255,255,0.2);
-        }
+        .sky-lantern { background: linear-gradient(180deg, #ffedd5 0%, #fb923c 40%, #ef4444 100%); position: relative; }
+        .sky-lantern::before { content: ''; position: absolute; top: 0; left: 50%; width: 1px; height: 100%; background: rgba(255,255,255,0.3); }
+        .sky-lantern::after { content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: rgba(255,255,255,0.2); }
 
         /* ❄️ 瑞雪 */
-        #snow-container {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            pointer-events: none; z-index: 9999; overflow: hidden;
-        }
+        #snow-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; }
         .snowflake {
-            position: absolute; background-color: white; border-radius: 50%; top: -20px;
-            opacity: 0; animation-name: fall; animation-timing-function: linear;
-            animation-iteration-count: infinite;
+            position: absolute; background-color: white; border-radius: 50%; top: -20px; opacity: 0;
+            animation-name: fall; animation-timing-function: linear; animation-iteration-count: infinite;
             box-shadow: 0 0 6px 2px rgba(255,255,255,0.4);
         }
         @keyframes fall {
@@ -167,8 +116,7 @@
     <main class="w-full max-w-2xl h-[95vh] sm:h-[90vh] bg-white/90 backdrop-blur-xl rounded-[1.5rem] sm:rounded-[2.5rem] shadow-2xl flex flex-col overflow-hidden border border-white/60 relative animate-fade-in z-10">
         
         <div class="absolute inset-0 z-0 pointer-events-none flex items-center justify-center opacity-[0.15]">
-            <img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" 
-                 class="w-[90%] max-w-[500px] object-contain">
+            <img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" class="w-[90%] max-w-[500px] object-contain">
         </div>
 
         <div class="absolute top-[60px] left-0 w-full pointer-events-none flex justify-center gap-4 sm:gap-6 pt-2 opacity-80 z-0">
@@ -202,17 +150,12 @@
             <div class="flex items-center gap-3 pl-1"> 
                 <div class="relative">
                     <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white border border-red-100 flex items-center justify-center overflow-hidden shadow-lg shadow-red-200">
-                         <img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" 
-                              class="w-full h-full object-cover">
+                         <img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" class="w-full h-full object-cover">
                     </div>
-                    <div class="absolute -bottom-1 -right-1 bg-yellow-400 text-red-600 text-[9px] font-bold w-4 h-4 flex items-center justify-center rounded-full border-2 border-white shadow-sm">
-                        福
-                    </div>
+                    <div class="absolute -bottom-1 -right-1 bg-yellow-400 text-red-600 text-[9px] font-bold w-4 h-4 flex items-center justify-center rounded-full border-2 border-white shadow-sm">福</div>
                 </div>
                 <div>
-                    <h1 class="font-bold text-sm sm:text-base text-slate-700 tracking-wide flex items-center gap-1 drop-shadow-sm bg-white/30 backdrop-blur-sm rounded px-1">
-                        云朵餐厅
-                    </h1>
+                    <h1 class="font-bold text-sm sm:text-base text-slate-700 tracking-wide flex items-center gap-1 drop-shadow-sm bg-white/30 backdrop-blur-sm rounded px-1">云朵餐厅</h1>
                     <p class="text-[9px] text-red-400 uppercase tracking-wider pl-1 font-bold">新年限定版</p>
                 </div>
             </div>
@@ -225,9 +168,7 @@
 
         <div id="chat-container" class="flex-1 overflow-y-auto p-4 sm:p-6 pt-28 sm:pt-36 pb-2 space-y-4 sm:space-y-6 no-scrollbar scroll-smooth relative z-10">
             <div class="flex gap-2 sm:gap-4 animate-fade-in">
-                <img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" 
-                     class="w-8 h-8 sm:w-12 sm:h-12 rounded-full flex-shrink-0 border-2 border-white ring-2 ring-red-200 shadow-lg object-cover bg-white"
-                     alt="AI">
+                <img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" class="w-8 h-8 sm:w-12 sm:h-12 rounded-full flex-shrink-0 border-2 border-white ring-2 ring-red-200 shadow-lg object-cover bg-white" alt="AI">
                 
                 <div class="bg-white/90 border border-white/50 text-slate-600 rounded-tl-none shadow-sm backdrop-blur-sm p-3 sm:p-4 rounded-2xl max-w-[92%] sm:max-w-[85%] prose-responsive mt-1">
                     <p class="mb-2">过年好！🧨 我是你的云朵膳食顾问 ☁️</p>
@@ -236,21 +177,15 @@
                     <div class="space-y-3">
                         <div class="flex items-start gap-2">
                             <span>💪</span>
-                            <span class="chat-link" onclick="window.sendQuickMsg('过年吃太油了，求推荐几款刮油解腻的饮品或小菜')">
-                                过年吃太油了，求清肠刮油食谱
-                            </span>
+                            <span class="chat-link" onclick="window.sendQuickMsg('过年吃太油了，求推荐几款刮油解腻的饮品或小菜（不要正餐）')">过年吃太油了，求清肠刮油食谱</span>
                         </div>
                         <div class="flex items-start gap-2">
                             <span>🥘</span>
-                            <span class="chat-link" onclick="window.sendQuickMsg('家里聚餐，求推荐几道适合春节的健康硬菜')">
-                                家里聚餐，推荐一道健康硬菜
-                            </span>
+                            <span class="chat-link" onclick="window.sendQuickMsg('家里聚餐，求推荐几道适合春节的健康硬菜（蒸煮为主）')">家里聚餐，推荐一道健康硬菜</span>
                         </div>
                         <div class="flex items-start gap-2">
                             <span>🍵</span>
-                            <span class="chat-link" onclick="window.sendQuickMsg('过年喝多了，求推荐几款解酒饮品或消食小菜')">
-                                过年喝多了，求解酒消食建议
-                            </span>
+                            <span class="chat-link" onclick="window.sendQuickMsg('过年喝多了，求推荐几款解酒饮品或消食小菜')">过年喝多了，求解酒消食建议</span>
                         </div>
                     </div>
                 </div>
@@ -259,28 +194,28 @@
 
         <div class="px-3 sm:px-4 pb-2 relative z-10">
             <div class="grid grid-cols-3 gap-1.5 sm:gap-2">
-                <button onclick="window.sendQuickMsg('求推荐几款刮油解腻的饮品或小菜')" class="h-7 sm:h-9 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1 cursor-pointer">
+                <button onclick="window.sendQuickMsg('求推荐几款刮油解腻的饮品或小菜', this)" class="relative overflow-visible h-7 sm:h-9 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1 cursor-pointer">
                     <span>🧨</span>
                     <span class="truncate">刮油解腻</span>
                 </button>
-                <button onclick="window.sendQuickMsg('家里聚餐，帮我推荐一份菜单')" class="h-7 sm:h-9 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1 cursor-pointer">
+                <button onclick="window.sendQuickMsg('家里聚餐，帮我推荐一份菜单', this)" class="relative overflow-visible h-7 sm:h-9 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1 cursor-pointer">
                     <span>🥟</span>
                     <span class="truncate">聚餐菜单</span>
                 </button>
-                <button onclick="window.sendQuickMsg('求推荐几款解酒饮品或消食小菜（分开推荐）')" class="h-7 sm:h-9 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1 cursor-pointer">
+                <button onclick="window.sendQuickMsg('求推荐几款解酒饮品或消食小菜', this)" class="relative overflow-visible h-7 sm:h-9 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1 cursor-pointer">
                     <span>🍵</span>
                     <span class="truncate">解酒消食</span>
                 </button>
                 
-                <button onclick="window.sendQuickMsg('帮我规划今天的全天三餐，要营养均衡')" class="h-7 sm:h-9 bg-white/90 hover:bg-green-50 border border-green-100 rounded-lg text-[10px] sm:text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-green-600 font-medium flex items-center justify-center gap-1 cursor-pointer">
+                <button onclick="window.sendQuickMsg('帮我规划今天的全天三餐，要营养均衡', this)" class="relative overflow-visible h-7 sm:h-9 bg-white/90 hover:bg-green-50 border border-green-100 rounded-lg text-[10px] sm:text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-green-600 font-medium flex items-center justify-center gap-1 cursor-pointer">
                     <span>🍱</span>
                     <span class="truncate">全天规划</span>
                 </button>
-                <button onclick="window.sendQuickMsg('推荐一份营养均衡的单餐')" class="h-7 sm:h-9 bg-white/90 hover:bg-orange-50 border border-orange-100 rounded-lg text-[10px] sm:text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-orange-600 font-medium flex items-center justify-center gap-1 cursor-pointer">
+                <button onclick="window.sendQuickMsg('推荐一份营养均衡的单人套餐', this)" class="relative overflow-visible h-7 sm:h-9 bg-white/90 hover:bg-orange-50 border border-orange-100 rounded-lg text-[10px] sm:text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-orange-600 font-medium flex items-center justify-center gap-1 cursor-pointer">
                     <span>🥗</span>
                     <span class="truncate">单餐推荐</span>
                 </button>
-                <button onclick="window.sendQuickMsg('我是特殊人群（如孕妇、老人等），请推荐饮食建议')" class="h-7 sm:h-9 bg-white/90 hover:bg-yellow-50 border border-yellow-100 rounded-lg text-[10px] sm:text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-yellow-600 font-medium flex items-center justify-center gap-1 cursor-pointer">
+                <button onclick="window.sendQuickMsg('我是特殊人群（如孕妇、老人），请推荐饮食建议', this)" class="relative overflow-visible h-7 sm:h-9 bg-white/90 hover:bg-yellow-50 border border-yellow-100 rounded-lg text-[10px] sm:text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-yellow-600 font-medium flex items-center justify-center gap-1 cursor-pointer">
                     <span>🛡️</span>
                     <span class="truncate">特殊人群</span>
                 </button>
@@ -289,19 +224,14 @@
 
         <div class="p-3 sm:p-4 bg-white/70 backdrop-blur-md border-t border-white/50 relative z-10 rounded-b-[1.5rem] sm:rounded-b-[2.5rem]">
             <div class="relative flex items-center bg-white rounded-full border border-slate-200 focus-within:border-red-300 focus-within:ring-4 focus-within:ring-red-50 transition-all shadow-sm">
-                <input type="text" id="user-input" 
-                    class="w-full bg-transparent px-4 sm:px-6 py-3 sm:py-4 outline-none text-xs sm:text-base text-slate-700 placeholder-slate-400"
-                    placeholder="问问过年吃点啥..." 
-                    autocomplete="off">
+                <input type="text" id="user-input" class="w-full bg-transparent px-4 sm:px-6 py-3 sm:py-4 outline-none text-xs sm:text-base text-slate-700 placeholder-slate-400" placeholder="问问过年吃点啥..." autocomplete="off">
                 <button id="send-btn" class="absolute right-1.5 sm:right-2 p-2 sm:p-2.5 bg-gradient-to-r from-red-400 to-orange-400 hover:from-red-500 hover:to-orange-500 text-white rounded-full transition-all transform hover:scale-105 shadow-md shadow-red-200 cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
                     </svg>
                 </button>
             </div>
-            <p class="text-center text-[9px] sm:text-[10px] text-slate-400 mt-2 sm:mt-3 font-medium tracking-wide">
-                Powered with 🧨 by Becky & AI
-            </p>
+            <p class="text-center text-[9px] sm:text-[10px] text-slate-400 mt-2 sm:mt-3 font-medium tracking-wide">Powered with 🧨 by Becky & AI</p>
         </div>
 
     </main>
@@ -320,33 +250,17 @@
         function createSnowflakes() {
             const container = document.getElementById('snow-container');
             const snowflakeCount = 200; 
-
             for (let i = 0; i < snowflakeCount; i++) {
                 const flake = document.createElement('div');
                 flake.classList.add('snowflake');
                 const randomType = Math.random();
-
                 if (randomType < 0.6) {
-                    const size = Math.random() * 2 + 1;
-                    flake.style.width = `${size}px`;
-                    flake.style.height = `${size}px`;
-                    flake.style.opacity = Math.random() * 0.3 + 0.2;
-                    flake.style.filter = `blur(0.5px)`;
+                    const size = Math.random() * 2 + 1; flake.style.width = `${size}px`; flake.style.height = `${size}px`; flake.style.opacity = Math.random() * 0.3 + 0.2; flake.style.filter = `blur(0.5px)`;
                 } else if (randomType < 0.9) {
-                    const size = Math.random() * 3 + 3;
-                    flake.style.width = `${size}px`;
-                    flake.style.height = `${size}px`;
-                    flake.style.opacity = Math.random() * 0.4 + 0.5;
-                    flake.style.filter = `blur(1px)`; 
+                    const size = Math.random() * 3 + 3; flake.style.width = `${size}px`; flake.style.height = `${size}px`; flake.style.opacity = Math.random() * 0.4 + 0.5; flake.style.filter = `blur(1px)`; 
                 } else {
-                    const size = Math.random() * 10 + 8;
-                    flake.style.width = `${size}px`;
-                    flake.style.height = `${size}px`;
-                    flake.style.opacity = Math.random() * 0.2 + 0.1;
-                    flake.style.filter = `blur(${Math.random() * 3 + 2}px)`;
-                    flake.style.boxShadow = `0 0 10px rgba(255,255,255,0.3)`;
+                    const size = Math.random() * 10 + 8; flake.style.width = `${size}px`; flake.style.height = `${size}px`; flake.style.opacity = Math.random() * 0.2 + 0.1; flake.style.filter = `blur(${Math.random() * 3 + 2}px)`; flake.style.boxShadow = `0 0 10px rgba(255,255,255,0.3)`;
                 }
-
                 flake.style.left = `${Math.random() * 100}%`;
                 const duration = Math.random() * 15 + 10; 
                 flake.style.animationDuration = `${duration}s`;
@@ -356,7 +270,24 @@
         }
         createSnowflakes();
 
-        window.sendQuickMsg = function(text) {
+        // 🧧 核心功能更新：点按钮，贴福字
+        window.sendQuickMsg = function(text, btnElement) {
+            
+            // 1. 如果传了按钮元素，就在它上面贴个福
+            if (btnElement) {
+                // 防止重复贴，先看看有没有
+                if (!btnElement.querySelector('.fu-sticker')) {
+                    // 造一个福字贴纸
+                    const fu = document.createElement('div');
+                    // 样式：绝对定位在右上角，旋转，红色背景，弹跳动画
+                    fu.className = 'fu-sticker absolute -top-1.5 -right-1.5 w-4 h-4 bg-red-600 border border-white rounded-[2px] transform rotate-12 flex items-center justify-center shadow-sm z-20 pointer-events-none animate-pop-in';
+                    fu.innerHTML = '<span class="text-yellow-100 text-[9px] font-serif font-bold -rotate-12 select-none leading-none">福</span>';
+                    
+                    btnElement.appendChild(fu);
+                }
+            }
+
+            // 2. 发送消息
             if(userInput) {
                 userInput.value = text;
                 sendMessage();
@@ -408,9 +339,7 @@
             
             const avatar = role === 'user' 
                 ? '<div class="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-red-50 border-2 border-white ring-2 ring-red-100 flex-shrink-0 flex items-center justify-center text-sm sm:text-xl shadow-md">👤</div>'
-                : `<img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" 
-                        class="w-8 h-8 sm:w-12 sm:h-12 rounded-full flex-shrink-0 border-2 border-white ring-2 ring-red-200 shadow-lg object-cover bg-white"
-                        alt="AI">`;
+                : `<img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" class="w-8 h-8 sm:w-12 sm:h-12 rounded-full flex-shrink-0 border-2 border-white ring-2 ring-red-200 shadow-lg object-cover bg-white" alt="AI">`;
 
             const bubbleStyle = role === 'user'
                 ? 'bg-bubble-user text-slate-700 ml-auto rounded-tr-none shadow-sm'
@@ -455,6 +384,3 @@
     </script>
 </body>
 </html>
-
-
-
