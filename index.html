@@ -63,10 +63,19 @@
             color: #BE123C;
             background-color: #FFF1F2;
         }
-        
-        .prose p { margin-bottom: 0.5rem; line-height: 1.6; }
-        .prose ul { list-style-type: disc; padding-left: 1.2rem; margin-bottom: 0.5rem; }
-        .prose strong { color: #881337; font-weight: 700; }
+
+        /* 📱 移动端排版优化 (手机看字更舒服) */
+        .prose-mobile {
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: #475569;
+        }
+        .prose-mobile p { margin-bottom: 0.75rem; }
+        .prose-mobile ul { list-style-type: none; padding-left: 0; margin-bottom: 0.75rem; }
+        .prose-mobile li { margin-bottom: 0.5rem; position: relative; padding-left: 1.2em; }
+        .prose-mobile li::before { content: '•'; position: absolute; left: 0; color: #fb7185; font-weight: bold; }
+        .prose-mobile strong { color: #be123c; font-weight: 700; }
+        .prose-mobile h3 { font-size: 1.1rem; font-weight: 700; color: #be123c; margin-top: 1.2rem; margin-bottom: 0.5rem; }
 
         /* 🏮 霄灯 */
         .sky-lantern {
@@ -80,47 +89,33 @@
             content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: rgba(255,255,255,0.2);
         }
 
-        /* ❄️ 瑞雪系统 - 电影级散景 (Cinematic Bokeh) */
+        /* ❄️ 瑞雪系统 */
         #snow-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            pointer-events: none; /* 关键：穿透点击 */
-            z-index: 9999; /* 关键：最上层 */
+            pointer-events: none;
+            z-index: 9999;
             overflow: hidden;
         }
-        
         .snowflake {
             position: absolute;
             background-color: white;
             border-radius: 50%;
-            top: -20px; /* 起始位置更高 */
+            top: -20px;
             opacity: 0;
             animation-name: fall;
             animation-timing-function: linear;
             animation-iteration-count: infinite;
-            /* 给所有雪花加一个极其微弱的柔光，提升质感 */
             box-shadow: 0 0 6px 2px rgba(255,255,255,0.4);
         }
-
         @keyframes fall {
-            0% {
-                transform: translateY(-10vh) translateX(-10px) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1; /* 快速显现 */
-            }
-            90% {
-                opacity: 0.8;
-            }
-            100% {
-                /* 增加水平位移和轻微旋转，更自然 */
-                transform: translateY(110vh) translateX(20px) rotate(180deg); 
-                opacity: 0;
-            }
+            0% { transform: translateY(-10vh) translateX(-10px) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(110vh) translateX(20px) rotate(180deg); opacity: 0; }
         }
     </style>
 </head>
@@ -136,34 +131,34 @@
                  class="w-[90%] max-w-[500px] object-contain">
         </div>
 
-        <div class="absolute top-0 left-0 w-full z-30 pointer-events-none flex justify-center gap-3 sm:gap-6 pt-2">
+        <div class="absolute top-[-10px] left-0 w-full pointer-events-none flex justify-center gap-6 pt-2 opacity-80" style="z-index: 1;">
             <div class="flex flex-col items-center animate-float-slow">
-                <div class="h-6 w-[1px] bg-red-300"></div> 
-                <div class="sky-lantern w-9 h-12 rounded-[4px] flex items-center justify-center text-lg font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">新</div>
+                <div class="h-12 w-[1px] bg-red-300"></div> 
+                <div class="sky-lantern w-8 h-10 rounded-[4px] flex items-center justify-center text-base font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">新</div>
                 <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div>
-                <div class="h-4 w-[1px] bg-red-400/60"></div>
+                <div class="h-3 w-[1px] bg-red-400/60"></div>
             </div>
             <div class="flex flex-col items-center animate-float-medium" style="animation-delay: 0.8s;">
-                <div class="h-10 w-[1px] bg-red-300"></div>
-                <div class="sky-lantern w-9 h-12 rounded-[4px] flex items-center justify-center text-lg font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">年</div>
+                <div class="h-16 w-[1px] bg-red-300"></div>
+                <div class="sky-lantern w-8 h-10 rounded-[4px] flex items-center justify-center text-base font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">年</div>
                 <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div>
-                <div class="h-4 w-[1px] bg-red-400/60"></div>
+                <div class="h-3 w-[1px] bg-red-400/60"></div>
             </div>
             <div class="flex flex-col items-center animate-float-fast" style="animation-delay: 0.4s;">
-                <div class="h-8 w-[1px] bg-red-300"></div>
-                <div class="sky-lantern w-9 h-12 rounded-[4px] flex items-center justify-center text-lg font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">限</div>
+                <div class="h-14 w-[1px] bg-red-300"></div>
+                <div class="sky-lantern w-8 h-10 rounded-[4px] flex items-center justify-center text-base font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">快</div>
                 <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div>
-                <div class="h-4 w-[1px] bg-red-400/60"></div>
+                <div class="h-3 w-[1px] bg-red-400/60"></div>
             </div>
             <div class="flex flex-col items-center animate-float-slow" style="animation-delay: 1.2s;">
-                <div class="h-4 w-[1px] bg-red-300"></div>
-                <div class="sky-lantern w-9 h-12 rounded-[4px] flex items-center justify-center text-lg font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">定</div>
+                <div class="h-10 w-[1px] bg-red-300"></div>
+                <div class="sky-lantern w-8 h-10 rounded-[4px] flex items-center justify-center text-base font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">乐</div>
                 <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div>
-                <div class="h-4 w-[1px] bg-red-400/60"></div>
+                <div class="h-3 w-[1px] bg-red-400/60"></div>
             </div>
         </div>
 
-        <header class="px-6 py-4 bg-white/70 backdrop-blur-md border-b border-white/50 z-20 flex items-center justify-between absolute top-0 w-full mt-1">
+        <header class="px-6 py-4 bg-white/80 backdrop-blur-md border-b border-white/50 z-20 flex items-center justify-between absolute top-0 w-full mt-1">
             <div class="flex items-center gap-4 pl-2"> 
                 <div class="relative">
                     <div class="w-10 h-10 rounded-full bg-white border border-red-100 flex items-center justify-center overflow-hidden shadow-lg shadow-red-200">
@@ -194,9 +189,9 @@
                      class="w-12 h-12 rounded-full flex-shrink-0 border-2 border-white ring-2 ring-red-200 shadow-lg object-cover bg-white"
                      alt="AI">
                 
-                <div class="bg-white/90 border border-white/50 text-slate-600 rounded-tl-none shadow-sm backdrop-blur-sm p-4 rounded-2xl max-w-[85%] text-sm leading-relaxed mt-1">
+                <div class="bg-white/90 border border-white/50 text-slate-600 rounded-tl-none shadow-sm backdrop-blur-sm p-4 rounded-2xl max-w-[85%] prose-mobile mt-1">
                     <p class="mb-2">过年好！🧨 我是你的云朵膳食顾问 ☁️</p>
-                    <p class="mb-3">大鱼大肉吃多了？这里有 3 个解腻锦囊：</p>
+                    <p class="mb-3">大鱼大肉吃多了？快用这 3 个解腻锦囊调理一下：</p>
                     
                     <div class="space-y-3">
                         <div class="flex items-start gap-2">
@@ -224,16 +219,15 @@
 
         <div class="px-4 pb-2 relative z-10">
             <div class="grid grid-cols-3 gap-1.5 sm:gap-2">
-                
-                <button onclick="window.sendQuickMsg('求推荐刮油解腻的饮品或小菜')" class="h-7 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1 cursor-pointer">
+                <button onclick="window.sendQuickMsg('求推荐几款刮油解腻的饮品或小菜')" class="h-7 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1 cursor-pointer">
                     <span>🧨</span>
                     <span class="truncate">刮油解腻</span>
                 </button>
-                <button onclick="window.sendQuickMsg('求推荐适合全家吃的春节硬菜做法')" class="h-7 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1 cursor-pointer">
+                <button onclick="window.sendQuickMsg('家里聚餐，求推荐一道春节压轴硬菜')" class="h-7 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1 cursor-pointer">
                     <span>🥟</span>
                     <span class="truncate">压轴硬菜</span>
                 </button>
-                <button onclick="window.sendQuickMsg('求推荐解酒饮品或消食小菜')" class="h-7 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1 cursor-pointer">
+                <button onclick="window.sendQuickMsg('求推荐几款解酒饮品或消食小菜')" class="h-7 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1 cursor-pointer">
                     <span>🍵</span>
                     <span class="truncate">解酒消食</span>
                 </button>
@@ -250,7 +244,6 @@
                     <span>🛡️</span>
                     <span class="truncate">特殊人群</span>
                 </button>
-
             </div>
         </div>
 
@@ -286,59 +279,47 @@
         const userId = 'user_' + Math.random().toString(36).substr(2, 9);
         let conversationId = null;
 
-        // ❄️ 瑞雪生成器 v3.0 (电影级散景 - Cinematic Bokeh)
+        // ❄️ 瑞雪生成器 (保留逻辑)
         function createSnowflakes() {
             const container = document.getElementById('snow-container');
-            const snowflakeCount = 200; // 数量暴增到200
+            const snowflakeCount = 200; 
 
             for (let i = 0; i < snowflakeCount; i++) {
                 const flake = document.createElement('div');
                 flake.classList.add('snowflake');
-                
-                // 生成随机数用于判断类型
                 const randomType = Math.random();
 
                 if (randomType < 0.6) {
-                    // Type A: 空气微粒 (Dust) - 60%
-                    const size = Math.random() * 2 + 1; // 1-3px
+                    const size = Math.random() * 2 + 1;
                     flake.style.width = `${size}px`;
                     flake.style.height = `${size}px`;
-                    flake.style.opacity = Math.random() * 0.3 + 0.2; // 低透明度
-                    flake.style.filter = `blur(0.5px)`; // 轻微模糊
+                    flake.style.opacity = Math.random() * 0.3 + 0.2;
+                    flake.style.filter = `blur(0.5px)`;
                 } else if (randomType < 0.9) {
-                    // Type B: 标准雪点 (Standard) - 30%
-                    const size = Math.random() * 3 + 3; // 3-6px
+                    const size = Math.random() * 3 + 3;
                     flake.style.width = `${size}px`;
                     flake.style.height = `${size}px`;
-                    flake.style.opacity = Math.random() * 0.4 + 0.5; // 中等透明度
+                    flake.style.opacity = Math.random() * 0.4 + 0.5;
                     flake.style.filter = `blur(1px)`; 
                 } else {
-                    // Type C: 前景大光斑 (Large Bokeh) - 10% - 这就是你要的“大雪点”
-                    const size = Math.random() * 10 + 8; // 8-18px (巨大)
+                    const size = Math.random() * 10 + 8;
                     flake.style.width = `${size}px`;
                     flake.style.height = `${size}px`;
-                    flake.style.opacity = Math.random() * 0.2 + 0.1; // 非常透明，不挡视线
-                    flake.style.filter = `blur(${Math.random() * 3 + 2}px)`; // 极度模糊，营造景深
-                    flake.style.boxShadow = `0 0 10px rgba(255,255,255,0.3)`; // 更强的光晕
+                    flake.style.opacity = Math.random() * 0.2 + 0.1;
+                    flake.style.filter = `blur(${Math.random() * 3 + 2}px)`;
+                    flake.style.boxShadow = `0 0 10px rgba(255,255,255,0.3)`;
                 }
 
-                // 通用设置
                 flake.style.left = `${Math.random() * 100}%`;
-                // 大雪花飘得慢，小雪花飘得快
                 const duration = Math.random() * 15 + 10; 
                 flake.style.animationDuration = `${duration}s`;
-                // 负延迟，开局满屏
                 flake.style.animationDelay = `-${Math.random() * 25}s`;
-
                 container.appendChild(flake);
             }
         }
-
-        // 启动瑞雪
         createSnowflakes();
 
         window.sendQuickMsg = function(text) {
-            console.log("点击了:", text);
             if(userInput) {
                 userInput.value = text;
                 sendMessage();
@@ -409,9 +390,10 @@
 
             const loadingClass = isLoading ? 'animate-pulse text-slate-400' : '';
 
+            // 应用 .prose-mobile 样式
             div.innerHTML = `
                 ${avatar}
-                <div class="${bubbleStyle} p-4 rounded-2xl max-w-[85%] text-sm prose ${loadingClass} mt-1">
+                <div class="${bubbleStyle} p-4 rounded-2xl max-w-[85%] ${role === 'ai' ? 'prose-mobile' : 'text-sm'} ${loadingClass} mt-1">
                     ${contentHtml}
                 </div>
             `;
