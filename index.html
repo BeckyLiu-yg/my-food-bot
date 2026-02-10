@@ -64,45 +64,48 @@
             background-color: #FFF1F2;
         }
 
-        /* --- 📱 核心修复：移动端排版优化 (Prose Mobile) --- */
-        /* 增加行高，拉开段距，手机阅读不累 */
-        .prose-mobile {
-            font-size: 0.95rem; 
-            line-height: 1.8;  /* 黄金行高 */
-            color: #475569;     
+        /* --- 响应式排版引擎 (核心修复) --- */
+        
+        /* 📱 默认: 手机端样式 (紧凑、高效) */
+        .prose-responsive {
+            font-size: 0.88rem; /* 约14px，手机最佳阅读大小 */
+            line-height: 1.6;   /* 紧凑行高 */
+            color: #475569;
         }
-        .prose-mobile p {
-            margin-bottom: 1rem; /* 段落间距加大 */
+        .prose-responsive p { margin-bottom: 0.5rem; } /* 减少段间距 */
+        .prose-responsive ul { list-style-type: none; padding-left: 0; margin-bottom: 0.5rem; }
+        .prose-responsive li { margin-bottom: 0.3rem; position: relative; padding-left: 1.2em; }
+        .prose-responsive h3 { 
+            font-size: 1rem; 
+            font-weight: 700; 
+            color: #be123c; 
+            margin-top: 1rem; 
+            margin-bottom: 0.4rem; 
+            border-bottom: 1px dashed #fecdd3; 
+            padding-bottom: 0.1rem;
         }
-        .prose-mobile ul {
-            list-style-type: none;
-            padding-left: 0;
-            margin-bottom: 1rem;
+
+        /* 💻 屏幕大于 640px (平板/电脑): 自动切换为舒适模式 */
+        @media (min-width: 640px) {
+            .prose-responsive {
+                font-size: 1rem;   /* 16px */
+                line-height: 1.8;  /* 宽松行高 */
+            }
+            .prose-responsive p { margin-bottom: 1rem; }
+            .prose-responsive li { margin-bottom: 0.6rem; padding-left: 1.4em; }
+            .prose-responsive h3 { font-size: 1.15rem; margin-top: 1.5rem; margin-bottom: 0.8rem; }
         }
-        .prose-mobile li {
-            margin-bottom: 0.6rem;
-            position: relative;
-            padding-left: 1.4em;
-        }
-        .prose-mobile li::before {
-            content: '☁️'; /* 用可爱的云朵代替圆点 */
+
+        .prose-responsive li::before {
+            content: '☁️'; 
             font-size: 0.8em;
             position: absolute;
             left: 0;
             top: 0.2em;
         }
-        .prose-mobile strong {
+        .prose-responsive strong {
             color: #be123c;
             font-weight: 700;
-        }
-        .prose-mobile h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #be123c;
-            margin-top: 1.5rem;
-            margin-bottom: 0.8rem;
-            border-bottom: 1px dashed #fecdd3;
-            padding-bottom: 0.2rem;
         }
 
         /* 🏮 霄灯 */
@@ -152,44 +155,44 @@
 
     <div id="snow-container"></div>
 
-    <main class="w-full max-w-2xl h-[90vh] bg-white/90 backdrop-blur-xl rounded-[2.5rem] shadow-2xl flex flex-col overflow-hidden border border-white/60 relative animate-fade-in z-10">
+    <main class="w-full max-w-2xl h-[95vh] sm:h-[90vh] bg-white/90 backdrop-blur-xl rounded-[1.5rem] sm:rounded-[2.5rem] shadow-2xl flex flex-col overflow-hidden border border-white/60 relative animate-fade-in z-10">
         
         <div class="absolute inset-0 z-0 pointer-events-none flex items-center justify-center opacity-[0.15]">
             <img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" 
                  class="w-[90%] max-w-[500px] object-contain">
         </div>
 
-        <div class="absolute top-[65px] left-0 w-full pointer-events-none flex justify-center gap-6 pt-2 opacity-90 z-0">
+        <div class="absolute top-[60px] left-0 w-full pointer-events-none flex justify-center gap-4 sm:gap-6 pt-2 opacity-80 z-0">
             <div class="flex flex-col items-center animate-float-slow">
-                <div class="h-10 w-[1px] bg-red-300"></div> 
-                <div class="sky-lantern w-8 h-10 rounded-[4px] flex items-center justify-center text-base font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">新</div>
+                <div class="h-8 sm:h-12 w-[1px] bg-red-300"></div> 
+                <div class="sky-lantern w-6 h-8 sm:w-8 sm:h-10 rounded-[3px] flex items-center justify-center text-sm sm:text-base font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">新</div>
                 <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div>
                 <div class="h-3 w-[1px] bg-red-400/60"></div>
             </div>
             <div class="flex flex-col items-center animate-float-medium" style="animation-delay: 0.8s;">
-                <div class="h-14 w-[1px] bg-red-300"></div>
-                <div class="sky-lantern w-8 h-10 rounded-[4px] flex items-center justify-center text-base font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">年</div>
+                <div class="h-12 sm:h-16 w-[1px] bg-red-300"></div>
+                <div class="sky-lantern w-6 h-8 sm:w-8 sm:h-10 rounded-[3px] flex items-center justify-center text-sm sm:text-base font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">年</div>
                 <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div>
                 <div class="h-3 w-[1px] bg-red-400/60"></div>
             </div>
             <div class="flex flex-col items-center animate-float-fast" style="animation-delay: 0.4s;">
-                <div class="h-12 w-[1px] bg-red-300"></div>
-                <div class="sky-lantern w-8 h-10 rounded-[4px] flex items-center justify-center text-base font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">快</div>
+                <div class="h-10 sm:h-14 w-[1px] bg-red-300"></div>
+                <div class="sky-lantern w-6 h-8 sm:w-8 sm:h-10 rounded-[3px] flex items-center justify-center text-sm sm:text-base font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">快</div>
                 <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div>
                 <div class="h-3 w-[1px] bg-red-400/60"></div>
             </div>
             <div class="flex flex-col items-center animate-float-slow" style="animation-delay: 1.2s;">
-                <div class="h-8 w-[1px] bg-red-300"></div>
-                <div class="sky-lantern w-8 h-10 rounded-[4px] flex items-center justify-center text-base font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">乐</div>
+                <div class="h-6 sm:h-10 w-[1px] bg-red-300"></div>
+                <div class="sky-lantern w-6 h-8 sm:w-8 sm:h-10 rounded-[3px] flex items-center justify-center text-sm sm:text-base font-serif text-yellow-100 shadow-md animate-glow border border-orange-300/50">乐</div>
                 <div class="h-2 w-0.5 bg-red-500 mt-[-1px]"></div>
                 <div class="h-3 w-[1px] bg-red-400/60"></div>
             </div>
         </div>
 
-        <header class="px-6 py-4 bg-white/80 backdrop-blur-md border-b border-white/50 z-50 flex items-center justify-between absolute top-0 w-full mt-1">
-            <div class="flex items-center gap-4 pl-2"> 
+        <header class="px-4 sm:px-6 py-3 sm:py-4 bg-white/80 backdrop-blur-md border-b border-white/50 z-50 flex items-center justify-between absolute top-0 w-full mt-1">
+            <div class="flex items-center gap-3 pl-1"> 
                 <div class="relative">
-                    <div class="w-10 h-10 rounded-full bg-white border border-red-100 flex items-center justify-center overflow-hidden shadow-lg shadow-red-200">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white border border-red-100 flex items-center justify-center overflow-hidden shadow-lg shadow-red-200">
                          <img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" 
                               class="w-full h-full object-cover">
                     </div>
@@ -198,7 +201,7 @@
                     </div>
                 </div>
                 <div>
-                    <h1 class="font-bold text-base text-slate-700 tracking-wide flex items-center gap-1 drop-shadow-sm bg-white/30 backdrop-blur-sm rounded px-1">
+                    <h1 class="font-bold text-sm sm:text-base text-slate-700 tracking-wide flex items-center gap-1 drop-shadow-sm bg-white/30 backdrop-blur-sm rounded px-1">
                         云朵餐厅
                     </h1>
                     <p class="text-[9px] text-red-400 uppercase tracking-wider pl-1 font-bold">新年限定版</p>
@@ -211,13 +214,13 @@
             </button>
         </header>
 
-        <div id="chat-container" class="flex-1 overflow-y-auto p-6 pt-36 pb-4 space-y-6 no-scrollbar scroll-smooth relative z-10">
-            <div class="flex gap-4 animate-fade-in">
+        <div id="chat-container" class="flex-1 overflow-y-auto p-4 sm:p-6 pt-28 sm:pt-36 pb-2 space-y-4 sm:space-y-6 no-scrollbar scroll-smooth relative z-10">
+            <div class="flex gap-2 sm:gap-4 animate-fade-in">
                 <img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" 
-                     class="w-12 h-12 rounded-full flex-shrink-0 border-2 border-white ring-2 ring-red-200 shadow-lg object-cover bg-white"
+                     class="w-8 h-8 sm:w-12 sm:h-12 rounded-full flex-shrink-0 border-2 border-white ring-2 ring-red-200 shadow-lg object-cover bg-white"
                      alt="AI">
                 
-                <div class="bg-white/90 border border-white/50 text-slate-600 rounded-tl-none shadow-sm backdrop-blur-sm p-4 rounded-2xl max-w-[85%] prose-mobile mt-1">
+                <div class="bg-white/90 border border-white/50 text-slate-600 rounded-tl-none shadow-sm backdrop-blur-sm p-3 sm:p-4 rounded-2xl max-w-[92%] sm:max-w-[85%] prose-responsive mt-1">
                     <p class="mb-2">过年好！🧨 我是你的云朵膳食顾问 ☁️</p>
                     <p class="mb-3">大鱼大肉吃多了？快用这 3 个解腻锦囊调理一下：</p>
                     
@@ -245,49 +248,49 @@
             </div>
         </div>
 
-        <div class="px-4 pb-2 relative z-10">
+        <div class="px-3 sm:px-4 pb-2 relative z-10">
             <div class="grid grid-cols-3 gap-1.5 sm:gap-2">
-                <button onclick="window.sendQuickMsg('求推荐几款刮油解腻的饮品或小菜')" class="h-7 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1 cursor-pointer">
+                <button onclick="window.sendQuickMsg('求推荐几款刮油解腻的饮品或小菜')" class="h-7 sm:h-9 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1 cursor-pointer">
                     <span>🧨</span>
                     <span class="truncate">刮油解腻</span>
                 </button>
-                <button onclick="window.sendQuickMsg('家里聚餐，帮我推荐一份菜单')" class="h-7 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1 cursor-pointer">
+                <button onclick="window.sendQuickMsg('家里聚餐，帮我推荐一份菜单')" class="h-7 sm:h-9 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1 cursor-pointer">
                     <span>🥟</span>
                     <span class="truncate">聚餐菜单</span>
                 </button>
-                <button onclick="window.sendQuickMsg('求推荐几款解酒饮品或消食小菜')" class="h-7 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1 cursor-pointer">
+                <button onclick="window.sendQuickMsg('求推荐几款解酒饮品或消食小菜')" class="h-7 sm:h-9 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg text-[10px] sm:text-xs text-red-600 transition shadow-sm hover:shadow-md font-bold flex items-center justify-center gap-1 cursor-pointer">
                     <span>🍵</span>
                     <span class="truncate">解酒消食</span>
                 </button>
                 
-                <button onclick="window.sendQuickMsg('帮我规划今天的全天三餐，要营养均衡')" class="h-7 bg-white/90 hover:bg-green-50 border border-green-100 rounded-lg text-[10px] sm:text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-green-600 font-medium flex items-center justify-center gap-1 cursor-pointer">
+                <button onclick="window.sendQuickMsg('帮我规划今天的全天三餐，要营养均衡')" class="h-7 sm:h-9 bg-white/90 hover:bg-green-50 border border-green-100 rounded-lg text-[10px] sm:text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-green-600 font-medium flex items-center justify-center gap-1 cursor-pointer">
                     <span>🍱</span>
                     <span class="truncate">全天规划</span>
                 </button>
-                <button onclick="window.sendQuickMsg('推荐一份营养均衡的单人套餐')" class="h-7 bg-white/90 hover:bg-orange-50 border border-orange-100 rounded-lg text-[10px] sm:text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-orange-600 font-medium flex items-center justify-center gap-1 cursor-pointer">
+                <button onclick="window.sendQuickMsg('推荐一份营养均衡的单人套餐')" class="h-7 sm:h-9 bg-white/90 hover:bg-orange-50 border border-orange-100 rounded-lg text-[10px] sm:text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-orange-600 font-medium flex items-center justify-center gap-1 cursor-pointer">
                     <span>🥗</span>
                     <span class="truncate">单餐推荐</span>
                 </button>
-                <button onclick="window.sendQuickMsg('我是特殊人群（如孕妇、老人），请推荐饮食建议')" class="h-7 bg-white/90 hover:bg-yellow-50 border border-yellow-100 rounded-lg text-[10px] sm:text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-yellow-600 font-medium flex items-center justify-center gap-1 cursor-pointer">
+                <button onclick="window.sendQuickMsg('我是特殊人群（如孕妇、老人），请推荐饮食建议')" class="h-7 sm:h-9 bg-white/90 hover:bg-yellow-50 border border-yellow-100 rounded-lg text-[10px] sm:text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-yellow-600 font-medium flex items-center justify-center gap-1 cursor-pointer">
                     <span>🛡️</span>
                     <span class="truncate">特殊人群</span>
                 </button>
             </div>
         </div>
 
-        <div class="p-4 bg-white/70 backdrop-blur-md border-t border-white/50 relative z-10 rounded-b-[2.5rem]">
+        <div class="p-3 sm:p-4 bg-white/70 backdrop-blur-md border-t border-white/50 relative z-10 rounded-b-[1.5rem] sm:rounded-b-[2.5rem]">
             <div class="relative flex items-center bg-white rounded-full border border-slate-200 focus-within:border-red-300 focus-within:ring-4 focus-within:ring-red-50 transition-all shadow-sm">
                 <input type="text" id="user-input" 
-                    class="w-full bg-transparent px-6 py-4 outline-none text-slate-700 placeholder-slate-400"
+                    class="w-full bg-transparent px-4 sm:px-6 py-3 sm:py-4 outline-none text-xs sm:text-base text-slate-700 placeholder-slate-400"
                     placeholder="问问过年吃点啥..." 
                     autocomplete="off">
-                <button id="send-btn" class="absolute right-2 p-2.5 bg-gradient-to-r from-red-400 to-orange-400 hover:from-red-500 hover:to-orange-500 text-white rounded-full transition-all transform hover:scale-105 shadow-md shadow-red-200 cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <button id="send-btn" class="absolute right-1.5 sm:right-2 p-2 sm:p-2.5 bg-gradient-to-r from-red-400 to-orange-400 hover:from-red-500 hover:to-orange-500 text-white rounded-full transition-all transform hover:scale-105 shadow-md shadow-red-200 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
                     </svg>
                 </button>
             </div>
-            <p class="text-center text-[10px] text-slate-400 mt-3 font-medium tracking-wide">
+            <p class="text-center text-[9px] sm:text-[10px] text-slate-400 mt-2 sm:mt-3 font-medium tracking-wide">
                 Powered with 🧨 by Becky & AI
             </p>
         </div>
@@ -295,7 +298,7 @@
     </main>
 
     <script>
-        // ... (JS 代码保持不变) ...
+        // ... (API 配置部分保持不变) ...
         const API_KEY = 'app-Usm9V9geo1e5FbXkcRmMIDlr'; 
         const BASE_URL = 'https://api.dify.ai/v1';
         
@@ -306,9 +309,10 @@
         const userId = 'user_' + Math.random().toString(36).substr(2, 9);
         let conversationId = null;
 
+        // ❄️ 瑞雪生成器 (数量适中 150)
         function createSnowflakes() {
             const container = document.getElementById('snow-container');
-            const snowflakeCount = 200; 
+            const snowflakeCount = 150; 
 
             for (let i = 0; i < snowflakeCount; i++) {
                 const flake = document.createElement('div');
@@ -328,12 +332,12 @@
                     flake.style.opacity = Math.random() * 0.4 + 0.5;
                     flake.style.filter = `blur(1px)`; 
                 } else {
-                    const size = Math.random() * 10 + 8;
+                    const size = Math.random() * 8 + 6;
                     flake.style.width = `${size}px`;
                     flake.style.height = `${size}px`;
                     flake.style.opacity = Math.random() * 0.2 + 0.1;
                     flake.style.filter = `blur(${Math.random() * 3 + 2}px)`;
-                    flake.style.boxShadow = `0 0 10px rgba(255,255,255,0.3)`;
+                    flake.style.boxShadow = `0 0 8px rgba(255,255,255,0.3)`;
                 }
 
                 flake.style.left = `${Math.random() * 100}%`;
@@ -392,13 +396,14 @@
 
         function appendMessage(role, text, isLoading = false) {
             const div = document.createElement('div');
-            div.className = 'flex gap-4 animate-fade-in';
+            div.className = 'flex gap-2 sm:gap-4 animate-fade-in'; // 手机 gap-2，电脑 gap-4
             div.id = isLoading ? 'loading-msg' : `msg-${Date.now()}`;
             
+            // 头像响应式尺寸
             const avatar = role === 'user' 
-                ? '<div class="w-12 h-12 rounded-full bg-red-50 border-2 border-white ring-2 ring-red-100 flex-shrink-0 flex items-center justify-center text-xl shadow-md">👤</div>'
+                ? '<div class="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-red-50 border-2 border-white ring-2 ring-red-100 flex-shrink-0 flex items-center justify-center text-sm sm:text-xl shadow-md">👤</div>'
                 : `<img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" 
-                        class="w-12 h-12 rounded-full flex-shrink-0 border-2 border-white ring-2 ring-red-200 shadow-lg object-cover bg-white"
+                        class="w-8 h-8 sm:w-12 sm:h-12 rounded-full flex-shrink-0 border-2 border-white ring-2 ring-red-200 shadow-lg object-cover bg-white"
                         alt="AI">`;
 
             const bubbleStyle = role === 'user'
@@ -416,10 +421,10 @@
 
             const loadingClass = isLoading ? 'animate-pulse text-slate-400' : '';
 
-            // 关键：应用 .prose-mobile 样式
+            // 气泡响应式尺寸：手机 p-3, 电脑 p-4
             div.innerHTML = `
                 ${avatar}
-                <div class="${bubbleStyle} p-4 rounded-2xl max-w-[85%] ${role === 'ai' ? 'prose-mobile' : 'text-sm'} ${loadingClass} mt-1">
+                <div class="${bubbleStyle} p-3 sm:p-4 rounded-2xl max-w-[92%] sm:max-w-[85%] ${role === 'ai' ? 'prose-responsive' : 'text-xs sm:text-sm'} ${loadingClass} mt-1">
                     ${contentHtml}
                 </div>
             `;
