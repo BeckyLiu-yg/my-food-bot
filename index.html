@@ -64,48 +64,67 @@
             background-color: #FFF1F2;
         }
 
-        /* --- 响应式排版引擎 (核心修复) --- */
+        /* --- 🎨 核心升级：视觉降噪排版引擎 --- */
         
-        /* 📱 默认: 手机端样式 (紧凑、高效) */
+        /* 📱 默认 (手机): 紧凑但清晰 */
         .prose-responsive {
-            font-size: 0.88rem; /* 约14px，手机最佳阅读大小 */
-            line-height: 1.6;   /* 紧凑行高 */
-            color: #475569;
+            font-size: 0.9rem; /* 14.4px */
+            line-height: 1.7;
+            color: #334155; /* Slate-700: 字色加深一点，更清晰 */
         }
-        .prose-responsive p { margin-bottom: 0.5rem; } /* 减少段间距 */
-        .prose-responsive ul { list-style-type: none; padding-left: 0; margin-bottom: 0.5rem; }
-        .prose-responsive li { margin-bottom: 0.3rem; position: relative; padding-left: 1.2em; }
-        .prose-responsive h3 { 
-            font-size: 1rem; 
-            font-weight: 700; 
-            color: #be123c; 
-            margin-top: 1rem; 
-            margin-bottom: 0.4rem; 
-            border-bottom: 1px dashed #fecdd3; 
-            padding-bottom: 0.1rem;
-        }
-
-        /* 💻 屏幕大于 640px (平板/电脑): 自动切换为舒适模式 */
-        @media (min-width: 640px) {
-            .prose-responsive {
-                font-size: 1rem;   /* 16px */
-                line-height: 1.8;  /* 宽松行高 */
-            }
-            .prose-responsive p { margin-bottom: 1rem; }
-            .prose-responsive li { margin-bottom: 0.6rem; padding-left: 1.4em; }
-            .prose-responsive h3 { font-size: 1.15rem; margin-top: 1.5rem; margin-bottom: 0.8rem; }
-        }
-
+        
+        /* 段落：适中距离 */
+        .prose-responsive p { margin-bottom: 0.8rem; }
+        
+        /* 列表：去红 */
+        .prose-responsive ul { list-style-type: none; padding-left: 0; margin-bottom: 1rem; }
+        .prose-responsive li { margin-bottom: 0.5rem; position: relative; padding-left: 1.4em; }
+        
+        /* 列表符号：保留一点点粉色作为点缀 */
         .prose-responsive li::before {
             content: '☁️'; 
             font-size: 0.8em;
             position: absolute;
             left: 0;
-            top: 0.2em;
+            top: 0.25em;
+            opacity: 0.8;
         }
+
+        /* 重点强调：❌去红！✅改深灰 */
+        /* 以前是红色，现在改为深色，减少视觉疲劳 */
         .prose-responsive strong {
-            color: #be123c;
+            color: #1e293b; /* Slate-800 */
             font-weight: 700;
+            background: linear-gradient(120deg, transparent 0%, transparent 100%); /* 预留高亮位 */
+        }
+
+        /* 标题分块：✅ 加背景块，增强分割感 */
+        .prose-responsive h3 { 
+            font-size: 1.05rem; 
+            font-weight: 700; 
+            color: #be123c; /* 标题保留红色，作为视觉引导 */
+            
+            /* 关键改动：胶囊背景 */
+            background-color: #fff1f2; /* 极淡的粉色背景 */
+            padding: 0.4rem 0.8rem;
+            border-radius: 0.5rem;
+            
+            /* 间距控制 */
+            margin-top: 1.5rem; 
+            margin-bottom: 0.8rem;
+            display: inline-block; /* 让背景块只包住文字 */
+        }
+
+        /* 分割线 */
+        .prose-responsive hr {
+            border-color: #ffe4e6;
+            margin: 1.5rem 0;
+        }
+
+        /* 💻 电脑端微调 */
+        @media (min-width: 640px) {
+            .prose-responsive { font-size: 1rem; line-height: 1.8; }
+            .prose-responsive h3 { font-size: 1.15rem; margin-top: 2rem; }
         }
 
         /* 🏮 霄灯 */
@@ -120,25 +139,15 @@
             content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: rgba(255,255,255,0.2);
         }
 
-        /* ❄️ 瑞雪系统 */
+        /* ❄️ 瑞雪 */
         #snow-container {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 9999; 
-            overflow: hidden;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 9999; overflow: hidden;
         }
         .snowflake {
-            position: absolute;
-            background-color: white;
-            border-radius: 50%;
-            top: -20px;
-            opacity: 0;
-            animation-name: fall;
-            animation-timing-function: linear;
+            position: absolute; background-color: white; border-radius: 50%; top: -20px;
+            opacity: 0; animation-name: fall; animation-timing-function: linear;
             animation-iteration-count: infinite;
             box-shadow: 0 0 6px 2px rgba(255,255,255,0.4);
         }
@@ -227,13 +236,13 @@
                     <div class="space-y-3">
                         <div class="flex items-start gap-2">
                             <span>💪</span>
-                            <span class="chat-link" onclick="window.sendQuickMsg('过年吃太油了，求推荐几款刮油解腻的饮品或小菜')">
+                            <span class="chat-link" onclick="window.sendQuickMsg('过年吃太油了，求推荐几款刮油解腻的饮品或小菜（不要正餐）')">
                                 过年吃太油了，求清肠刮油食谱
                             </span>
                         </div>
                         <div class="flex items-start gap-2">
                             <span>🥘</span>
-                            <span class="chat-link" onclick="window.sendQuickMsg('家里聚餐，求推荐几道适合春节的健康硬菜')">
+                            <span class="chat-link" onclick="window.sendQuickMsg('家里聚餐，求推荐几道适合春节的健康硬菜（蒸煮为主）')">
                                 家里聚餐，推荐一道健康硬菜
                             </span>
                         </div>
@@ -271,7 +280,7 @@
                     <span>🥗</span>
                     <span class="truncate">单餐推荐</span>
                 </button>
-                <button onclick="window.sendQuickMsg('我是特殊人群（如孕妇、老人等），请推荐饮食建议')" class="h-7 sm:h-9 bg-white/90 hover:bg-yellow-50 border border-yellow-100 rounded-lg text-[10px] sm:text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-yellow-600 font-medium flex items-center justify-center gap-1 cursor-pointer">
+                <button onclick="window.sendQuickMsg('我是特殊人群（如孕妇、老人），请推荐饮食建议')" class="h-7 sm:h-9 bg-white/90 hover:bg-yellow-50 border border-yellow-100 rounded-lg text-[10px] sm:text-xs text-slate-600 transition shadow-sm hover:shadow-md hover:text-yellow-600 font-medium flex items-center justify-center gap-1 cursor-pointer">
                     <span>🛡️</span>
                     <span class="truncate">特殊人群</span>
                 </button>
@@ -298,7 +307,6 @@
     </main>
 
     <script>
-        // ... (API 配置部分保持不变) ...
         const API_KEY = 'app-Usm9V9geo1e5FbXkcRmMIDlr'; 
         const BASE_URL = 'https://api.dify.ai/v1';
         
@@ -309,10 +317,9 @@
         const userId = 'user_' + Math.random().toString(36).substr(2, 9);
         let conversationId = null;
 
-        // ❄️ 瑞雪生成器 (数量适中 150)
         function createSnowflakes() {
             const container = document.getElementById('snow-container');
-            const snowflakeCount = 150; 
+            const snowflakeCount = 200; 
 
             for (let i = 0; i < snowflakeCount; i++) {
                 const flake = document.createElement('div');
@@ -332,12 +339,12 @@
                     flake.style.opacity = Math.random() * 0.4 + 0.5;
                     flake.style.filter = `blur(1px)`; 
                 } else {
-                    const size = Math.random() * 8 + 6;
+                    const size = Math.random() * 10 + 8;
                     flake.style.width = `${size}px`;
                     flake.style.height = `${size}px`;
                     flake.style.opacity = Math.random() * 0.2 + 0.1;
                     flake.style.filter = `blur(${Math.random() * 3 + 2}px)`;
-                    flake.style.boxShadow = `0 0 8px rgba(255,255,255,0.3)`;
+                    flake.style.boxShadow = `0 0 10px rgba(255,255,255,0.3)`;
                 }
 
                 flake.style.left = `${Math.random() * 100}%`;
@@ -396,10 +403,9 @@
 
         function appendMessage(role, text, isLoading = false) {
             const div = document.createElement('div');
-            div.className = 'flex gap-2 sm:gap-4 animate-fade-in'; // 手机 gap-2，电脑 gap-4
+            div.className = 'flex gap-2 sm:gap-4 animate-fade-in'; 
             div.id = isLoading ? 'loading-msg' : `msg-${Date.now()}`;
             
-            // 头像响应式尺寸
             const avatar = role === 'user' 
                 ? '<div class="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-red-50 border-2 border-white ring-2 ring-red-100 flex-shrink-0 flex items-center justify-center text-sm sm:text-xl shadow-md">👤</div>'
                 : `<img src="https://raw.githubusercontent.com/BeckyLiu-yg/my-food-bot/main/Gemini_Generated_Image_kf8jv9kf8jv9kf8j.png" 
@@ -421,7 +427,6 @@
 
             const loadingClass = isLoading ? 'animate-pulse text-slate-400' : '';
 
-            // 气泡响应式尺寸：手机 p-3, 电脑 p-4
             div.innerHTML = `
                 ${avatar}
                 <div class="${bubbleStyle} p-3 sm:p-4 rounded-2xl max-w-[92%] sm:max-w-[85%] ${role === 'ai' ? 'prose-responsive' : 'text-xs sm:text-sm'} ${loadingClass} mt-1">
@@ -450,4 +455,3 @@
     </script>
 </body>
 </html>
-
